@@ -1,0 +1,164 @@
+---
+// VideoModal.astro - Modal pour la démo vidéo FormFlow
+---
+
+<div x-data="{ videoOpen: false }">
+  <!-- Modal Backdrop -->
+  <div
+    x-show="videoOpen"
+    x-transition:enter="transition ease-out duration-300"
+    x-transition:enter-start="opacity-0"
+    x-transition:enter-end="opacity-100"
+    x-transition:leave="transition ease-in duration-200"
+    x-transition:leave-start="opacity-100"
+    x-transition:leave-end="opacity-0"
+    @click="videoOpen = false"
+    @keydown.escape.window="videoOpen = false"
+    class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm p-4"
+    style="display: none;"
+  >
+    <!-- Modal Content -->
+    <div
+      x-show="videoOpen"
+      x-transition:enter="transition ease-out duration-300 transform"
+      x-transition:enter-start="opacity-0 scale-95"
+      x-transition:enter-end="opacity-100 scale-100"
+      x-transition:leave="transition ease-in duration-200 transform"
+      x-transition:leave-start="opacity-100 scale-100"
+      x-transition:leave-end="opacity-0 scale-95"
+      @click.stop
+      class="relative w-full max-w-4xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden"
+      role="dialog"
+      aria-labelledby="video-modal-title"
+      aria-modal="true"
+    >
+      <!-- Modal Header -->
+      <div
+        class="flex items-center justify-between p-6 border-b border-base-200"
+      >
+        <div>
+          <h2
+            id="video-modal-title"
+            class="text-xl font-semibold text-base-900"
+          >
+            FormFlow Demo
+          </h2>
+          <p class="text-sm text-base-500 mt-1">
+            See how FormFlow transforms WordPress contact form management
+          </p>
+        </div>
+        <button
+          @click="videoOpen = false"
+          class="flex items-center justify-center w-8 h-8 text-base-400 hover:text-base-600 hover:bg-base-100 rounded-full transition-colors"
+          aria-label="Close video modal"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Video Container -->
+      <div class="relative">
+        <video
+          x-ref="demoVideo"
+          class="w-full h-auto max-h-[70vh]"
+          controls
+          preload="metadata"
+          poster="/form-flow.png"
+          @click.stop
+        >
+          <source src="/formflow.mp4" type="video/mp4" />
+          <p class="text-white p-4">
+            Your browser doesn't support HTML5 video.
+            <a href="/formflow.mp4" class="text-accent-300 hover:underline">
+              Download the video instead
+            </a>.
+          </p>
+        </video>
+
+        <!-- Play Button Overlay (for initial state) -->
+        <div
+          x-show="!$refs.demoVideo?.played?.length"
+          class="absolute inset-0 flex items-center justify-center cursor-pointer"
+          @click="$refs.demoVideo.play()"
+        >
+          <div
+            class="flex items-center justify-center w-20 h-20 bg-white bg-opacity-90 hover:bg-opacity-100 rounded-full transition-all duration-200 hover:scale-110"
+          >
+            <svg
+              class="w-8 h-8 text-accent-600 ml-1"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path d="M8 5v14l11-7z"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer (Optional CTA) -->
+      <div
+        class="flex items-center justify-between p-6 bg-base-25 border-t border-base-200"
+      >
+        <div class="text-sm text-base-600">
+          Ready to transform your WordPress forms?
+        </div>
+        <div class="flex gap-3">
+          <button
+            @click="videoOpen = false"
+            class="px-4 py-2 text-sm font-medium text-base-500 hover:text-base-700 transition-colors"
+          >
+            Close
+          </button>
+          <a
+            href="https://wordpress.org/plugins/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-accent-600 hover:bg-accent-700 rounded-md transition-colors"
+          >
+            Start Free Trial
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Modal Trigger (to be used by parent components) -->
+  <script is:inline>
+    // Auto-pause video when modal closes
+    document.addEventListener("alpine:init", () => {
+      Alpine.data("videoModal", () => ({
+        videoOpen: false,
+
+        openModal() {
+          this.videoOpen = true;
+          // Focus management for accessibility
+          this.$nextTick(() => {
+            const video = this.$refs.demoVideo;
+            if (video) {
+              video.currentTime = 0; // Start from beginning
+            }
+          });
+        },
+
+        closeModal() {
+          const video = this.$refs.demoVideo;
+          if (video && !video.paused) {
+            video.pause();
+          }
+          this.videoOpen = false;
+        },
+      }));
+    });
+  </script>
+</div>

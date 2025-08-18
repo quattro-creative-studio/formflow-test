@@ -1,0 +1,577 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <section
+    class="overflow-hidden bg-gradient-to-br from-blue-50 via-white to-accent-50"
+  >
+    <div class="px-8 pt-32 pb-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
+      <!-- Header -->
+      <div class="max-w-2xl mx-auto text-center mb-16">
+        <div class="flex items-center justify-center gap-2 mb-4">
+          <span
+            class="inline-flex items-center gap-2 bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            🔍 Free Audit
+          </span>
+        </div>
+        <h1
+          class="text-2xl/snug leading-tight tracking-tight sm:text-3xl/snug md:text-4xl/snug lg:text-5xl/snug mt-4 font-bold text-base-900"
+        >
+          Free <span class="text-accent-600">WordPress Forms</span> Security Audit
+        </h1>
+        <p class="text-lg leading-relaxed mt-6 text-base-600 font-medium">
+          Discover security, performance and accessibility issues in <strong
+            >30 seconds</strong
+          >. Complete analysis with personalized recommendations.
+        </p>
+      </div>
+
+      <!-- Main Form Card -->
+      <div class="max-w-4xl mx-auto">
+        <div
+          x-data="{
+            url: '',
+            loading: false,
+            results: null,
+            error: null,
+            
+            async analyzeURL() {
+              if (!this.url.trim()) {
+                alert('Please enter a URL');
+                return;
+              }
+              
+              if (!this.url.startsWith('http')) {
+                this.url = 'https://' + this.url.replace(/^https?:\\/\\//, '');
+              }
+              
+              this.loading = true;
+              this.error = null;
+              this.results = null;
+              
+              try {
+                const response = await fetch('http://localhost:3001/api/analyze', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ url: this.url })
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                  this.results = data.data;
+                } else {
+                  this.error = data.error || 'Error during analysis';
+                }
+              } catch (err) {
+                this.error = 'Connection error. Please check that the URL is accessible.';
+                console.error('Audit error:', err);
+              } finally {
+                this.loading = false;
+              }
+            },
+            
+            resetForm() {
+              this.results = null;
+              this.error = null;
+              this.url = '';
+            },
+            
+            getScoreColor(score) {
+              if (score >= 90) return 'text-green-600';
+              if (score >= 80) return 'text-blue-600';
+              if (score >= 70) return 'text-yellow-600';
+              if (score >= 60) return 'text-orange-600';
+              return 'text-red-600';
+            },
+            
+            getScoreLabel(score) {
+              if (score >= 90) return 'Excellent';
+              if (score >= 80) return 'Good';
+              if (score >= 70) return 'Average';
+              if (score >= 60) return 'Poor';
+              return 'Critical';
+            }
+          }"
+          class="bg-white rounded-3xl shadow-2xl p-8 md:p-12 border border-base-200"
+        >
+          <!-- Input Form -->
+          <div x-show="!results && !loading">
+            <div class="mb-8">
+              <label class="block text-lg font-semibold text-base-900 mb-4">
+                Enter the URL of your page with forms:
+              </label>
+              <div class="relative">
+                <input
+                  x-model="url"
+                  @keydown.enter="analyzeURL()"
+                  type="text"
+                  placeholder="yourwebsite.com/contact"
+                  class="w-full px-6 py-4 border border-base-300 rounded-xl text-lg font-medium focus:ring-2 focus:ring-accent-500 focus:border-accent-500 pr-16"
+                  required
+                />
+                <div
+                  class="absolute right-4 top-1/2 transform -translate-y-1/2 text-base-400"
+                >
+                  🌐
+                </div>
+              </div>
+              <p class="text-sm text-base-500 mt-3">
+                Example: mywebsite.com/contact, website.com/apply, etc.
+              </p>
+            </div>
+
+            <button
+              @click="analyzeURL()"
+              :disabled="!url.trim()"
+              :class="!url.trim() ? 'bg-base-300 cursor-not-allowed' : 'bg-accent-600 hover:bg-accent-700'"
+              class="w-full text-white font-bold py-4 px-8 rounded-xl text-xl transition-all duration-200 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                ></path>
+              </svg>
+              Start Free Audit
+            </button>
+          </div>
+
+          <!-- Loading State -->
+          <div
+            x-show="loading"
+            class="text-center py-16"
+            x-transition.duration.300ms
+          >
+            <div class="relative mb-8">
+              <div
+                class="w-20 h-20 border-4 border-accent-500 border-t-transparent rounded-full animate-spin mx-auto"
+              >
+              </div>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <svg
+                  class="w-8 h-8 text-accent-600"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <h3 class="text-xl font-semibold text-base-900 mb-4">
+              Analysis in progress...
+            </h3>
+            <p class="text-base-600 mb-6">
+              Checking your forms, security and performance
+            </p>
+
+            <!-- Progress Steps -->
+            <div class="max-w-md mx-auto">
+              <div
+                class="flex items-center justify-between text-sm text-base-500"
+              >
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 bg-accent-500 rounded-full animate-pulse">
+                  </div>
+                  Loading page
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 bg-base-300 rounded-full"></div>
+                  Detecting forms
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 bg-base-300 rounded-full"></div>
+                  Security analysis
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Error State -->
+          <div
+            x-show="error"
+            class="bg-red-50 border-2 border-red-200 rounded-xl p-8 text-center"
+            x-transition.duration.300ms
+          >
+            <div
+              class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-red-600"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-semibold text-red-800 mb-4">
+              Analysis Error
+            </h3>
+            <p class="text-red-700 mb-6" x-text="error"></p>
+            <button
+              @click="resetForm()"
+              class="bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+            >
+              Try Again
+            </button>
+          </div>
+
+          <!-- Results -->
+          <div x-show="results" x-transition.duration.500ms>
+            <!-- Score Header -->
+            <div class="text-center mb-12">
+              <div
+                class="inline-flex items-center gap-2 bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold mb-6"
+              >
+                ✅ Analysis Complete
+              </div>
+
+              <div
+                class="bg-gradient-to-br from-base-50 to-accent-50 rounded-2xl p-8 border border-base-200 mb-8"
+              >
+                <div
+                  class="text-6xl font-bold mb-4"
+                  :class="getScoreColor(results?.score)"
+                  x-text="results?.score"
+                >
+                </div>
+                <div class="text-2xl font-semibold text-base-900 mb-2">
+                  /100
+                </div>
+                <div
+                  class="text-lg font-medium text-base-600"
+                  x-text="getScoreLabel(results?.score)"
+                >
+                </div>
+              </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+              <div
+                class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 text-center border border-blue-200"
+              >
+                <div
+                  class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <svg
+                    class="w-6 h-6 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"
+                    ></path>
+                  </svg>
+                </div>
+                <div
+                  class="text-3xl font-bold text-blue-600 mb-2"
+                  x-text="results?.forms || 0"
+                >
+                </div>
+                <div class="text-blue-800 font-semibold">Forms Detected</div>
+              </div>
+
+              <div
+                class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 text-center border border-purple-200"
+              >
+                <div
+                  class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <svg
+                    class="w-6 h-6 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"
+                    ></path>
+                  </svg>
+                </div>
+                <div
+                  class="text-3xl font-bold mb-2"
+                  :class="results?.isHTTPS ? 'text-green-600' : 'text-red-600'"
+                  x-text="results?.isHTTPS ? 'Secured' : 'Not Secured'"
+                >
+                </div>
+                <div
+                  class="font-semibold"
+                  :class="results?.isHTTPS ? 'text-green-800' : 'text-red-800'"
+                >
+                  HTTPS Protocol
+                </div>
+              </div>
+
+              <div
+                class="bg-gradient-to-br from-orange-50 to-orange-100 rounded-xl p-6 text-center border border-orange-200"
+              >
+                <div
+                  class="w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <svg
+                    class="w-6 h-6 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M13,13H11V7H13M13,17H11V15H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="text-3xl font-bold text-orange-600 mb-2">
+                  <span x-text="Math.round(results?.loadTime || 0)"></span>ms
+                </div>
+                <div class="text-orange-800 font-semibold">Loading Time</div>
+              </div>
+            </div>
+
+            <!-- Issues Section -->
+            <div
+              x-show="results?.issues && results.issues.length > 0"
+              class="mb-8"
+            >
+              <div class="bg-red-50 border-2 border-red-200 rounded-xl p-6">
+                <div class="flex items-center gap-3 mb-4">
+                  <div
+                    class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-semibold text-red-800">
+                    Issues Detected
+                  </h3>
+                </div>
+                <div class="space-y-3">
+                  <template
+                    x-for="(issue, index) in results?.issues"
+                    :key="index"
+                  >
+                    <div
+                      class="flex items-start gap-3 p-3 bg-white rounded-lg border border-red-200"
+                    >
+                      <div
+                        class="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"
+                      >
+                      </div>
+                      <p class="text-red-700 font-medium" x-text="issue"></p>
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recommendations Section -->
+            <div
+              x-show="results?.recommendations && results.recommendations.length > 0"
+              class="mb-12"
+            >
+              <div class="bg-blue-50 border-2 border-blue-200 rounded-xl p-6">
+                <div class="flex items-center gap-3 mb-4">
+                  <div
+                    class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-white"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M11,16.5L6.5,12L7.91,10.59L11,13.67L16.59,8.09L18,9.5L11,16.5Z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-semibold text-blue-800">
+                    Our Recommendations
+                  </h3>
+                </div>
+                <div class="space-y-3">
+                  <template
+                    x-for="(rec, index) in results?.recommendations"
+                    :key="index"
+                  >
+                    <div
+                      class="flex items-start gap-3 p-3 bg-white rounded-lg border border-blue-200"
+                    >
+                      <div
+                        class="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"
+                      >
+                      </div>
+                      <p class="text-blue-700 font-medium" x-text="rec"></p>
+                    </div>
+                  </template>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div
+              class="bg-gradient-to-br from-accent-500 via-accent-600 to-blue-600 rounded-2xl p-8 text-center text-white relative overflow-hidden"
+            >
+              <div class="absolute inset-0 bg-black opacity-10"></div>
+              <div class="relative z-10">
+                <h3 class="text-3xl font-bold mb-4">
+                  Solve These Issues Automatically
+                </h3>
+                <p class="text-xl mb-8 opacity-90">
+                  FormFlow fixes security, optimizes performance and eliminates
+                  spam - without technical effort
+                </p>
+
+                <div
+                  class="flex flex-col sm:flex-row gap-4 items-center justify-center"
+                >
+                  <a
+                    href="/#pricing"
+                    class="inline-flex items-center gap-3 bg-white text-accent-600 font-bold px-8 py-4 rounded-xl hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                      ></path>
+                    </svg>
+                    Try FormFlow Free
+                  </a>
+
+                  <a
+                    href="/calculator"
+                    class="inline-flex items-center gap-2 text-white font-semibold px-6 py-4 rounded-xl border-2 border-white border-opacity-30 hover:bg-opacity-10 transition-all duration-200"
+                  >
+                    💰 Calculate My Savings
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Reset Button -->
+            <div class="text-center mt-8">
+              <button
+                @click="resetForm()"
+                class="inline-flex items-center gap-2 text-accent-600 hover:text-accent-700 font-semibold text-lg transition-colors"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.42-1.41L7.83 13H20v-2z"
+                  ></path>
+                </svg>
+                Analyze Another Site
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- How It Works Section -->
+      <div class="max-w-4xl mx-auto mt-24">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-base-900 mb-4">
+            How Does Our Audit Work?
+          </h2>
+          <p class="text-lg text-base-600">
+            Complete 4-step analysis to identify all issues
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div
+              class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-blue-600"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-base-900 mb-2">Form Detection</h3>
+            <p class="text-sm text-base-600">
+              Identification of all forms on your page
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-red-600"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12,1L3,5V11C3,16.55 6.84,21.74 12,23C17.16,21.74 21,16.55 21,11V5L12,1M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-base-900 mb-2">Security Analysis</h3>
+            <p class="text-sm text-base-600">
+              HTTPS verification, CSRF protection and vulnerabilities
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-orange-600"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M13,13H11V7H13M13,17H11V15H13M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-base-900 mb-2">
+              Performance Testing
+            </h3>
+            <p class="text-sm text-base-600">
+              Loading time measurement and optimizations
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-green-600"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <h3 class="font-semibold text-base-900 mb-2">
+              Personalized Report
+            </h3>
+            <p class="text-sm text-base-600">
+              Specific recommendations for your site
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

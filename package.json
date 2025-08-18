@@ -1,0 +1,32 @@
+{
+  "name": "@gregcrn/formflow",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.5.0",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/vite": "^4.1.10",
+    "astro": "^5.13.2",
+    "tailwindcss": "^4.1.10"
+  },
+  "dependencies": {
+    "@astrojs/vercel": "^8.2.6",
+    "@sanity/astro": "^3.2.10",
+    "@sanity/client": "^7.8.0",
+    "astro-portabletext": "^0.11.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-is": "^19.1.0",
+    "sanity": "^4.1.0",
+    "styled-components": "^6.1.19"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}

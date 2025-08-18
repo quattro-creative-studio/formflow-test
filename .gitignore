@@ -1,0 +1,39 @@
+# Dépendances
+node_modules/
+.pnpm-store/
+
+# Builds
+dist/
+.astro/
+.vercel/
+output/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Caches
+.cache/
+.next/
+*.tsbuildinfo
+
+# IDE & éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS spécifiques
+.DS_Store
+Thumbs.db
+
+# Environnements & secrets
+.env
+.env.local
+.env.*.local
+
+# Autres
+coverage/
