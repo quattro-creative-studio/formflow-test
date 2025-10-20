@@ -1,5 +1,6 @@
 ---
 // TimeComparison.astro - Section comparaison temps DIY vs FormFlow
+import { ChevronDown } from "@lucide/astro";
 ---
 
 <section class="overflow-hidden bg-base-25">
@@ -7,51 +8,104 @@
     <!-- Header -->
     <div class="max-w-2xl mx-auto text-center mb-16">
       <div class="flex items-center justify-center gap-2 mb-4">
-        <span class="inline-flex items-center gap-2 bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">
+        <span
+          class="inline-flex items-center gap-2 bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold"
+        >
           ⏰ Time Reality Check
         </span>
       </div>
-      <h2 class="text-xl/snug leading-tight tracking-tight sm:text-2xl/snug md:text-3xl/snug lg:text-4xl/snug mt-4 font-semibold text-base-900">
+      <h2
+        class="text-xl/snug leading-tight tracking-tight sm:text-2xl/snug md:text-3xl/snug lg:text-4xl/snug mt-4 font-semibold text-base-900"
+      >
         How Much Time Are You Really Wasting on Contact Forms?
       </h2>
       <p class="text-base leading-normal mt-4 text-base-500 font-medium">
-        Most WordPress site owners spend 15+ hours per month on manual form management. Here's the brutal breakdown:
+        Most WordPress site owners spend 15+ hours per month on manual form
+        management. Here's the brutal breakdown:
       </p>
     </div>
 
     <!-- Time Comparison -->
     <div class="max-w-6xl mx-auto">
       <div class="grid lg:grid-cols-2 gap-8">
-        
         <!-- DIY Approach - Time Wasters -->
-        <div class="relative">
-          <div class="bg-white ring-1 ring-red-200 rounded-2xl p-8 h-full">
+        <div class="relative" x-data="{ open: false }">
+          <div class="bg-white ring-1 ring-red-200 rounded-2xl p-8">
             <div class="flex items-center gap-3 mb-6">
-              <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
-                <svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/>
+              <div
+                class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center"
+              >
+                <svg
+                  class="w-6 h-6 text-red-600"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"
+                  ></path>
                 </svg>
               </div>
               <div>
-                <h3 class="text-xl font-semibold text-base-900">The DIY Nightmare</h3>
-                <p class="text-sm text-red-600 font-medium">15+ hours/month wasted</p>
+                <h3 class="text-xl font-semibold text-base-900">
+                  The DIY Nightmare
+                </h3>
+                <p class="text-sm text-red-600 font-medium">
+                  15+ hours/month wasted
+                </p>
               </div>
             </div>
 
-            <!-- Time Breakdown -->
-            <div class="space-y-4">
+            <!-- Total Waste (Always Visible) -->
+            <div class="p-4 bg-red-100 rounded-lg border-2 border-red-300 mb-4">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-base-900"
+                  >Total Time Wasted:</span
+                >
+                <span class="text-2xl font-bold text-red-600"
+                  >15+ hours/month</span
+                >
+              </div>
+              <p class="text-sm text-red-700 mt-2">
+                <strong>That's 180+ hours per year</strong> - nearly a full work
+                month!
+              </p>
+
+              <!-- Toggle Button -->
+              <button
+                @click="open = !open"
+                class="mt-4 w-full flex items-center justify-center gap-2 text-red-600 hover:text-red-700 font-medium text-sm transition-colors"
+              >
+                <span x-text="open ? 'Hide Details' : 'Show Breakdown'"></span>
+                <ChevronDown
+                  class="w-4 h-4 transition-transform duration-300"
+                  :class="{ 'rotate-180': open }"
+                />
+              </button>
+            </div>
+
+            <!-- Time Breakdown (Collapsible) -->
+            <div x-show="open" x-collapse class="space-y-4">
               <!-- Email Sorting -->
-              <div class="flex items-start gap-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
-                <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+              <div
+                class="flex items-start gap-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-500"
+              >
+                <div
+                  class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                >
                   <span class="text-white text-sm font-bold">1</span>
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="font-semibold text-base-900">Sorting Gmail Chaos</h4>
+                    <h4 class="font-semibold text-base-900">
+                      Sorting Gmail Chaos
+                    </h4>
                     <span class="text-red-600 font-bold text-sm">4h/month</span>
                   </div>
                   <p class="text-sm text-base-600 mb-3">
-                    <em>"Where's that important inquiry from last Tuesday? Was it spam or real?"</em>
+                    <em
+                      >"Where's that important inquiry from last Tuesday? Was it
+                      spam or real?"</em
+                    >
                   </p>
                   <div class="text-xs text-base-500 space-y-1">
                     <div>• 20 min/day digging through emails</div>
@@ -62,17 +116,26 @@
               </div>
 
               <!-- Manual Spam Filtering -->
-              <div class="flex items-start gap-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
-                <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+              <div
+                class="flex items-start gap-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-500"
+              >
+                <div
+                  class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                >
                   <span class="text-white text-sm font-bold">2</span>
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="font-semibold text-base-900">Fighting Spam Manually</h4>
+                    <h4 class="font-semibold text-base-900">
+                      Fighting Spam Manually
+                    </h4>
                     <span class="text-red-600 font-bold text-sm">3h/month</span>
                   </div>
                   <p class="text-sm text-base-600 mb-3">
-                    <em>"Another 'Make $5000/week' message... Delete, delete, delete."</em>
+                    <em
+                      >"Another 'Make $5000/week' message... Delete, delete,
+                      delete."</em
+                    >
                   </p>
                   <div class="text-xs text-base-500 space-y-1">
                     <div>• 15 min/day deleting obvious spam</div>
@@ -83,17 +146,28 @@
               </div>
 
               <!-- WordPress Admin Dance -->
-              <div class="flex items-start gap-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
-                <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+              <div
+                class="flex items-start gap-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-500"
+              >
+                <div
+                  class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                >
                   <span class="text-white text-sm font-bold">3</span>
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="font-semibold text-base-900">WordPress Admin Juggling</h4>
-                    <span class="text-red-600 font-bold text-sm">2.5h/month</span>
+                    <h4 class="font-semibold text-base-900">
+                      WordPress Admin Juggling
+                    </h4>
+                    <span class="text-red-600 font-bold text-sm"
+                      >2.5h/month</span
+                    >
                   </div>
                   <p class="text-sm text-base-600 mb-3">
-                    <em>"Let me check WPForms... wait, was it in the dashboard or emails?"</em>
+                    <em
+                      >"Let me check WPForms... wait, was it in the dashboard or
+                      emails?"</em
+                    >
                   </p>
                   <div class="text-xs text-base-500 space-y-1">
                     <div>• Jumping between admin and email</div>
@@ -104,8 +178,12 @@
               </div>
 
               <!-- Manual Response Management -->
-              <div class="flex items-start gap-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
-                <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+              <div
+                class="flex items-start gap-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-500"
+              >
+                <div
+                  class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                >
                   <span class="text-white text-sm font-bold">4</span>
                 </div>
                 <div class="flex-1">
@@ -114,7 +192,10 @@
                     <span class="text-red-600 font-bold text-sm">3h/month</span>
                   </div>
                   <p class="text-sm text-base-600 mb-3">
-                    <em>"Did I already reply to this? What did I tell them before?"</em>
+                    <em
+                      >"Did I already reply to this? What did I tell them
+                      before?"</em
+                    >
                   </p>
                   <div class="text-xs text-base-500 space-y-1">
                     <div>• No conversation history</div>
@@ -125,17 +206,28 @@
               </div>
 
               <!-- Analysis & Follow-up -->
-              <div class="flex items-start gap-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
-                <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+              <div
+                class="flex items-start gap-4 p-4 bg-red-50 rounded-lg border-l-4 border-red-500"
+              >
+                <div
+                  class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                >
                   <span class="text-white text-sm font-bold">5</span>
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="font-semibold text-base-900">Manual Tracking & Follow-ups</h4>
-                    <span class="text-red-600 font-bold text-sm">2.5h/month</span>
+                    <h4 class="font-semibold text-base-900">
+                      Manual Tracking & Follow-ups
+                    </h4>
+                    <span class="text-red-600 font-bold text-sm"
+                      >2.5h/month</span
+                    >
                   </div>
                   <p class="text-sm text-base-600 mb-3">
-                    <em>"I should probably follow up on that quote request... when was that?"</em>
+                    <em
+                      >"I should probably follow up on that quote request...
+                      when was that?"</em
+                    >
                   </p>
                   <div class="text-xs text-base-500 space-y-1">
                     <div>• No lead priority system</div>
@@ -146,13 +238,20 @@
               </div>
 
               <!-- Total Waste -->
-              <div class="mt-6 p-4 bg-red-100 rounded-lg border-2 border-red-300">
+              <div
+                class="mt-6 p-4 bg-red-100 rounded-lg border-2 border-red-300"
+              >
                 <div class="flex items-center justify-between">
-                  <span class="font-semibold text-base-900">Total Time Wasted:</span>
-                  <span class="text-2xl font-bold text-red-600">15+ hours/month</span>
+                  <span class="font-semibold text-base-900"
+                    >Total Time Wasted:</span
+                  >
+                  <span class="text-2xl font-bold text-red-600"
+                    >15+ hours/month</span
+                  >
                 </div>
                 <p class="text-sm text-red-700 mt-2">
-                  <strong>That's 180+ hours per year</strong> - nearly a full work month!
+                  <strong>That's 180+ hours per year</strong> - nearly a full work
+                  month!
                 </p>
               </div>
             </div>
@@ -160,36 +259,91 @@
         </div>
 
         <!-- FormFlow Approach -->
-        <div class="relative">
-          <div class="bg-white ring-1 ring-green-200 rounded-2xl p-8 h-full">
+        <div class="relative" x-data="{ open: false }">
+          <div class="bg-white ring-1 ring-green-200 rounded-2xl p-8">
             <div class="flex items-center gap-3 mb-6">
-              <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              <div
+                class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center"
+              >
+                <svg
+                  class="w-6 h-6 text-green-600"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
                 </svg>
               </div>
               <div>
-                <h3 class="text-xl font-semibold text-base-900">The FormFlow Way</h3>
-                <p class="text-sm text-green-600 font-medium">2 hours/month maximum</p>
+                <h3 class="text-xl font-semibold text-base-900">
+                  The FormFlow Way
+                </h3>
+                <p class="text-sm text-green-600 font-medium">
+                  2 hours/month maximum
+                </p>
               </div>
             </div>
 
-            <!-- Automated Solutions -->
-            <div class="space-y-4">
+            <!-- Total Time Saved (Always Visible) -->
+            <div
+              class="p-4 bg-green-100 rounded-lg border-2 border-green-300 mb-4"
+            >
+              <div class="flex items-center justify-between">
+                <span class="font-semibold text-base-900"
+                  >Total Time Investment:</span
+                >
+                <span class="text-2xl font-bold text-green-600"
+                  >2 hours/month</span
+                >
+              </div>
+              <p class="text-sm text-green-700 mt-2">
+                <strong>Save 13+ hours every month.</strong> That's 156+ hours per
+                year back!
+              </p>
+
+              <!-- Toggle Button -->
+              <button
+                @click="open = !open"
+                class="mt-4 w-full flex items-center justify-center gap-2 text-green-600 hover:text-green-700 font-medium text-sm transition-colors"
+              >
+                <span x-text="open ? 'Hide Details' : 'Show Breakdown'"></span>
+                <ChevronDown
+                  class="w-4 h-4 transition-transform duration-300"
+                  :class="{ 'rotate-180': open }"
+                />
+              </button>
+            </div>
+
+            <!-- Automated Solutions (Collapsible) -->
+            <div x-show="open" x-collapse class="space-y-4">
               <!-- AI Inbox -->
-              <div class="flex items-start gap-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
-                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              <div
+                class="flex items-start gap-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-500"
+              >
+                <div
+                  class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                >
+                  <svg
+                    class="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                   </svg>
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="font-semibold text-base-900">AI-Organized Inbox</h4>
-                    <span class="text-green-600 font-bold text-sm">30s/day</span>
+                    <h4 class="font-semibold text-base-900">
+                      AI-Organized Inbox
+                    </h4>
+                    <span class="text-green-600 font-bold text-sm">30s/day</span
+                    >
                   </div>
                   <p class="text-sm text-base-600 mb-3">
-                    <em>"All my inquiries, perfectly organized and prioritized. Finally."</em>
+                    <em
+                      >"All my inquiries, perfectly organized and prioritized.
+                      Finally."</em
+                    >
                   </p>
                   <div class="text-xs text-base-500 space-y-1">
                     <div>• ✅ Auto-categorized by urgency</div>
@@ -200,16 +354,29 @@
               </div>
 
               <!-- Smart Spam Detection -->
-              <div class="flex items-start gap-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
-                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 12l2 2 4-4m5 0a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              <div
+                class="flex items-start gap-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-500"
+              >
+                <div
+                  class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                >
+                  <svg
+                    class="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M9 12l2 2 4-4m5 0a7 7 0 11-14 0 7 7 0 0114 0z"
+                    ></path>
                   </svg>
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="font-semibold text-base-900">99.9% Spam Blocked</h4>
-                    <span class="text-green-600 font-bold text-sm">0 min/day</span>
+                    <h4 class="font-semibold text-base-900">
+                      99.9% Spam Blocked
+                    </h4>
+                    <span class="text-green-600 font-bold text-sm"
+                      >0 min/day</span
+                    >
                   </div>
                   <p class="text-sm text-base-600 mb-3">
                     <em>"I never see spam anymore. AI handles everything."</em>
@@ -223,16 +390,30 @@
               </div>
 
               <!-- Seamless Integration -->
-              <div class="flex items-start gap-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
-                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+              <div
+                class="flex items-start gap-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-500"
+              >
+                <div
+                  class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                >
+                  <svg
+                    class="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                    ></path>
                   </svg>
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="font-semibold text-base-900">WordPress Native</h4>
-                    <span class="text-green-600 font-bold text-sm">5 min setup</span>
+                    <h4 class="font-semibold text-base-900">
+                      WordPress Native
+                    </h4>
+                    <span class="text-green-600 font-bold text-sm"
+                      >5 min setup</span
+                    >
                   </div>
                   <p class="text-sm text-base-600 mb-3">
                     <em>"One plugin. Everything works together perfectly."</em>
@@ -246,19 +427,36 @@
               </div>
 
               <!-- Smart Responses -->
-              <div class="flex items-start gap-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
-                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+              <div
+                class="flex items-start gap-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-500"
+              >
+                <div
+                  class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                >
+                  <svg
+                    class="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                    ></path>
                   </svg>
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="font-semibold text-base-900">AI-Powered Responses</h4>
-                    <span class="text-green-600 font-bold text-sm">2 min/response</span>
+                    <h4 class="font-semibold text-base-900">
+                      AI-Powered Responses
+                    </h4>
+                    <span class="text-green-600 font-bold text-sm"
+                      >2 min/response</span
+                    >
                   </div>
                   <p class="text-sm text-base-600 mb-3">
-                    <em>"Smart templates, full conversation history. Professional every time."</em>
+                    <em
+                      >"Smart templates, full conversation history. Professional
+                      every time."</em
+                    >
                   </p>
                   <div class="text-xs text-base-500 space-y-1">
                     <div>• ✅ Response suggestions</div>
@@ -269,19 +467,36 @@
               </div>
 
               <!-- Analytics & Insights -->
-              <div class="flex items-start gap-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
-                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+              <div
+                class="flex items-start gap-4 p-4 bg-green-50 rounded-lg border-l-4 border-green-500"
+              >
+                <div
+                  class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1"
+                >
+                  <svg
+                    class="w-4 h-4 text-white"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                    ></path>
                   </svg>
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center justify-between mb-2">
-                    <h4 class="font-semibold text-base-900">Automatic Analytics</h4>
-                    <span class="text-green-600 font-bold text-sm">0 min setup</span>
+                    <h4 class="font-semibold text-base-900">
+                      Automatic Analytics
+                    </h4>
+                    <span class="text-green-600 font-bold text-sm"
+                      >0 min setup</span
+                    >
                   </div>
                   <p class="text-sm text-base-600 mb-3">
-                    <em>"I see exactly which inquiries matter most. Data-driven decisions."</em>
+                    <em
+                      >"I see exactly which inquiries matter most. Data-driven
+                      decisions."</em
+                    >
                   </p>
                   <div class="text-xs text-base-500 space-y-1">
                     <div>• ✅ Lead scoring & prioritization</div>
@@ -290,22 +505,13 @@
                   </div>
                 </div>
               </div>
-
-              <!-- Total Time Saved -->
-              <div class="mt-6 p-4 bg-green-100 rounded-lg border-2 border-green-300">
-                <div class="flex items-center justify-between">
-                  <span class="font-semibold text-base-900">Total Time Investment:</span>
-                  <span class="text-2xl font-bold text-green-600">2 hours/month</span>
-                </div>
-                <p class="text-sm text-green-700 mt-2">
-                  <strong>Save 13+ hours every month.</strong> That's 156+ hours per year back in your life!
-                </p>
-              </div>
             </div>
           </div>
 
           <!-- Time Saved Badge -->
-          <div class="absolute -top-4 -right-4 w-16 h-16 bg-accent-500 rounded-full flex items-center justify-center shadow-lg">
+          <div
+            class="absolute -top-4 -right-4 w-16 h-16 bg-accent-500 rounded-full flex items-center justify-center shadow-lg"
+          >
             <div class="text-center">
               <div class="text-white font-bold text-sm">Save</div>
               <div class="text-white font-bold text-xs">87%</div>
@@ -315,28 +521,36 @@
       </div>
 
       <!-- Bottom CTA -->
-      <div class="max-w-2xl mx-auto text-center mt-16 p-8 bg-accent-50 rounded-2xl border border-accent-200">
+      <div
+        class="max-w-2xl mx-auto text-center mt-16 p-8 bg-accent-50 rounded-2xl border border-accent-200"
+      >
         <h3 class="text-xl font-semibold text-base-900 mb-4">
           Ready to Get Your Time Back?
         </h3>
         <p class="text-base-600 mb-6">
-          Join hundreds of WordPress site owners who've already reclaimed <strong>13+ hours every month</strong> with FormFlow's intelligent automation.
+          Join hundreds of WordPress site owners who've already reclaimed <strong
+            >13+ hours every month</strong
+          > with FormFlow's intelligent automation.
         </p>
         <div class="flex flex-wrap items-center gap-4 justify-center">
-          <a 
+          <a
             href="https://wordpress.org/plugins/"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 px-6 py-3 bg-accent-600 hover:bg-accent-700 text-white font-medium rounded-lg transition-colors"
           >
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              <path
+                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+              ></path>
             </svg>
             Start Free Trial - Save Time Today
           </a>
-          <button class="inline-flex items-center gap-2 px-4 py-2 text-accent-600 hover:text-accent-700 font-medium transition-colors">
+          <button
+            class="inline-flex items-center gap-2 px-4 py-2 text-accent-600 hover:text-accent-700 font-medium transition-colors"
+          >
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M8 5v14l11-7z"/>
+              <path d="M8 5v14l11-7z"></path>
             </svg>
             Watch Demo (2 min)
           </button>

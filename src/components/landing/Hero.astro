@@ -5,15 +5,18 @@ import VideoModal from "../VideoModal.astro";
 const featuresList = [
   {
     title: "Spam Destruction",
-    description: "Stop wading through junk; zero false positives aim.",
+    description:
+      "Cut through the clutter: zero false positives, only the emails that actually matter.",
   },
   {
     title: "AI-Organized Inbox",
-    description: "See real leads first; auto tags, sentiment, urgency.",
+    description:
+      "See your real leads first: automatically tagged, prioritized, and highlighted by sentiment and urgency.",
   },
   {
     title: "Advanced Filtering",
-    description: "Slice by source, priority, sentiment, or site in seconds.",
+    description:
+      "Find what matters instantly: filter by source, priority, sentiment, or site, and focus on what drives results.",
   },
 ];
 ---
@@ -206,17 +209,9 @@ const featuresList = [
         </div>
       </div>
     </div>
-    <dl
-      class="lg:gap-x-8 lg:grid-cols-3 max-w-4xl mt-8 mx-auto sm:gap-x-6 sm:gap-y-12 sm:grid sm:grid-cols-2 sm:space-y-0 space-y-6 text-center text-sm items-start"
-    >
-      {
-        featuresList.map(({ title, description }) => (
-          <div class="text-base-500 lg:text-balance">
-            <strong class="text-base-700">{title}</strong> ━ {description}
-          </div>
-        ))
-      }
-    </dl>
+  </div>
+  <TrustBadges />
+  <div class="px-8 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <div class="relative w-full mx-auto max-w-7xl items-center py-12 pb-12">
       <img
         alt="WordPress Contact Form Management Dashboard - Professional inbox with AI-powered analysis, spam detection, and multi-tenant workspaces"
@@ -225,6 +220,15 @@ const featuresList = [
       />
     </div>
   </div>
+  <dl
+    class="lg:gap-x-8 lg:grid-cols-3 max-w-4xl mt-8 mx-auto sm:gap-x-6 sm:gap-y-12 sm:grid sm:grid-cols-2 sm:space-y-0 space-y-6 text-center text-sm items-start"
+  >
+    {
+      featuresList.map(({ title, description }) => (
+        <div class="text-base-500 lg:text-balance">
+          <strong class="text-base-700">{title}</strong> ━ {description}
+        </div>
+      ))
+    }
+  </dl>
 </section>
-
-<TrustBadges />

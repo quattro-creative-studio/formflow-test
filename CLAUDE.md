@@ -14,16 +14,18 @@ This is an Astro-based SaaS landing page template, specifically configured for p
 
 ## Development Commands
 
+**Package Manager**: This project uses **Yarn** (v1.22.22), not npm. The package manager is enforced via the `packageManager` field in package.json.
+
 All commands are run from the root of the project:
 
 | Command | Action |
 |---------|--------|
-| `npm install` | Install dependencies |
-| `npm run dev` | Start development server at `localhost:4321` |
-| `npm run start` | Alias for `npm run dev` |
-| `npm run build` | Build production site to `./dist/` |
-| `npm run preview` | Preview build locally before deploying |
-| `npm run astro` | Access Astro CLI commands |
+| `yarn install` | Install dependencies |
+| `yarn dev` | Start development server at `localhost:4321` |
+| `yarn start` | Alias for `yarn dev` |
+| `yarn build` | Build production site to `./dist/` |
+| `yarn preview` | Preview build locally before deploying |
+| `yarn astro` | Access Astro CLI commands |
 
 **Note**: The development server runs on port 4321 (not 3000 as mentioned in some documentation).
 
@@ -106,3 +108,34 @@ This template specifically promotes a WordPress contact form management plugin w
 - WPForms integration messaging
 - WordPress ecosystem branding
 - Professional form management positioning
+
+## Sanity CMS Integration
+
+This project integrates with Sanity CMS for content management:
+
+- **Project ID**: `3nr8zhae`
+- **Dataset**: `production`
+- **CDN**: Disabled (`useCdn: false`) for real-time content updates
+- **Integration**: Configured in `astro.config.mjs` via `@sanity/astro`
+
+The Sanity integration allows fetching blog posts and other content. The studio is maintained in a separate project (`studio-formflow`) in the parent monorepo.
+
+## Form Audit Feature
+
+The `/audit` page (`src/pages/audit.astro`) provides a live form analysis tool:
+
+- **API Integration**: Connects to form audit API (default: `http://localhost:3001/api/analyze`)
+- **Environment Variable**: `PUBLIC_AUDIT_API_URL` (set in `.env` for production)
+- **Interactive Components**: Uses Alpine.js for client-side state management
+- **Analysis Features**: Form detection, security checks (HTTPS, CSRF), performance metrics, scoring (0-100)
+
+The audit API is maintained in a separate project (`formflow-audit-api`) in the parent monorepo.
+
+## Deployment
+
+- **Platform**: Configured for Vercel via `@astrojs/vercel` adapter
+- **Static Site Generation**: Astro builds to `./dist/` directory
+- **Production Checklist**:
+  - Update `site` URL in `astro.config.mjs` (currently `https://yoursite.com`)
+  - Set `PUBLIC_AUDIT_API_URL` environment variable for audit feature
+  - Update placeholder URLs in `BaseHead.astro` for SEO/social sharing
