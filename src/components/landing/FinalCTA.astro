@@ -13,19 +13,39 @@
         Still have questions?
       </h2>
       <p class="text-lg text-base-600 mb-8">
-        Get answers to all your FormFlow questions in our comprehensive FAQ section.
+        Get answers to all your FormFlow questions in our comprehensive FAQ
+        section.
       </p>
-      
+
       <a
         href="/faq"
         class="inline-flex items-center justify-center transition-all duration-200 focus:ring-2 focus:outline-none text-white bg-accent-600 hover:bg-accent-700 focus:ring-accent-500/50 h-9 px-4 py-2 text-sm font-medium rounded-md w-fit max-w-xs mx-auto"
       >
-        <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <svg
+          class="w-5 h-5 mr-3"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
         </svg>
         View All FAQs
-        <svg class="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        <svg
+          class="w-5 h-5 ml-3"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
         </svg>
       </a>
     </div>
@@ -38,13 +58,13 @@
         <h2 class="text-4xl font-bold text-base-900 lg:text-5xl mb-6">
           Ready to get your time back?
         </h2>
-        <p class="text-xl text-base-600 mb-8">
+        <!-- <p class="text-xl text-base-600 mb-8">
           Join thousands of WordPress professionals who've already transformed
           their form management with FormFlow.
-        </p>
+        </p> -->
 
         <!-- Primary CTAs -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <!-- <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
           <a
             href="https://wordpress.org/plugins/"
             target="_blank"
@@ -85,10 +105,10 @@
               ></path>
             </svg>
           </a>
-        </div>
+        </div> -->
 
         <!-- Trust Indicators -->
-        <div
+        <!-- <div
           class="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-base-500"
         >
           <div class="flex items-center gap-2">
@@ -130,10 +150,10 @@
             </svg>
             <span>Works with any WordPress host</span>
           </div>
-        </div>
+        </div> -->
 
         <!-- Social Proof -->
-        <div class="mt-8 pt-8 border-t border-accent-200">
+        <!-- <div class="mt-8 pt-8 border-t border-accent-200">
           <div
             class="flex flex-col sm:flex-row items-center justify-center gap-4 text-base-600"
           >
@@ -155,6 +175,269 @@
             <span>Trusted by 10k+ WordPress sites</span>
             <span class="hidden sm:block text-base-300">•</span>
             <span>Used by leading agencies</span>
+          </div>
+        </div> -->
+
+        <!-- Contact Form Section -->
+        <div class="pt-12 border-t border-accent-300">
+          <div class="max-w-2xl mx-auto">
+            <h3 class="text-2xl font-bold text-base-900 mb-3 text-center">
+              Get in Touch
+            </h3>
+            <p class="text-base text-base-600 mb-8 text-center">
+              Have questions or want to learn more? Fill out the form below and
+              our team will get back to you within 24 hours.
+            </p>
+
+            <!-- Form with Alpine.js -->
+            <form
+              x-data="{
+                loading: false,
+                success: false,
+                error: '',
+                formData: {
+                  firstName: '',
+                  lastName: '',
+                  email: '',
+                  nbSites: '',
+                  demandeType: '',
+                  message: ''
+                },
+                async submitForm() {
+                  this.loading = true;
+                  this.success = false;
+                  this.error = '';
+
+                  try {
+                    const response = await fetch('/api/brevo-submit', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(this.formData)
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                      this.success = true;
+                      // Reset form
+                      this.formData = {
+                        firstName: '',
+                        lastName: '',
+                        email: '',
+                        nbSites: '',
+                        demandeType: '',
+                        message: ''
+                      };
+                    } else {
+                      this.error = data.message || 'An error occurred.';
+                    }
+                  } catch (err) {
+                    this.error = 'Connection error. Please try again.';
+                  } finally {
+                    this.loading = false;
+                  }
+                }
+              }"
+              @submit.prevent="submitForm()"
+              class="space-y-6"
+            >
+              <!-- First Name & Last Name -->
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label
+                    for="firstName"
+                    class="block text-sm font-semibold text-base-700 mb-2"
+                  >
+                    First Name <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="firstName"
+                    x-model="formData.firstName"
+                    required
+                    class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                    placeholder="John"
+                  />
+                </div>
+                <div>
+                  <label
+                    for="lastName"
+                    class="block text-sm font-semibold text-base-700 mb-2"
+                  >
+                    Last Name <span class="text-red-500">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    id="lastName"
+                    x-model="formData.lastName"
+                    required
+                    class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                    placeholder="Doe"
+                  />
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-semibold text-base-700 mb-2"
+                >
+                  Work Email <span class="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  x-model="formData.email"
+                  required
+                  class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors"
+                  placeholder="john.doe@company.com"
+                />
+              </div>
+
+              <!-- Number of WordPress Sites -->
+              <div>
+                <label
+                  for="nbSites"
+                  class="block text-sm font-semibold text-base-700 mb-2"
+                >
+                  Number of WordPress Sites <span class="text-red-500">*</span>
+                </label>
+                <select
+                  id="nbSites"
+                  x-model="formData.nbSites"
+                  required
+                  class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors bg-white"
+                >
+                  <option value="">Select...</option>
+                  <option value="1 site">1 site</option>
+                  <option value="2-5 sites">2-5 sites</option>
+                  <option value="6-10 sites">6-10 sites</option>
+                  <option value="10+ sites">10+ sites</option>
+                  <option value="Agency">Agency</option>
+                </select>
+              </div>
+
+              <!-- Request Type -->
+              <div>
+                <label
+                  for="demandeType"
+                  class="block text-sm font-semibold text-base-700 mb-2"
+                >
+                  Request Type <span class="text-red-500">*</span>
+                </label>
+                <select
+                  id="demandeType"
+                  x-model="formData.demandeType"
+                  required
+                  class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors bg-white"
+                >
+                  <option value="">Select...</option>
+                  <option value="Request a Demo">Request a Demo</option>
+                  <option value="Free Trial">Free Trial</option>
+                  <option value="Technical Question">Technical Question</option>
+                  <option value="Investor / Partnership"
+                    >Investor / Partnership</option
+                  >
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <!-- Message (Optional) -->
+              <div>
+                <label
+                  for="message"
+                  class="block text-sm font-semibold text-base-700 mb-2"
+                >
+                  Message (optional)
+                </label>
+                <textarea
+                  id="message"
+                  x-model="formData.message"
+                  rows="4"
+                  class="w-full px-4 py-3 border border-base-300 rounded-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors resize-none"
+                  placeholder="Tell us more about your needs..."
+                ></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <div>
+                <button
+                  type="submit"
+                  :disabled="loading"
+                  :class="loading ? 'bg-base-400 cursor-not-allowed' : 'bg-accent-600 hover:bg-accent-700'"
+                  class="w-full text-white font-semibold px-6 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-3"
+                >
+                  <span x-show="!loading">Send Request</span>
+                  <span x-show="loading" class="flex items-center gap-2">
+                    <svg
+                      class="animate-spin h-5 w-5 text-white"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        class="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        stroke-width="4"></circle>
+                      <path
+                        class="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                      ></path>
+                    </svg>
+                    Sending...
+                  </span>
+                </button>
+              </div>
+
+              <!-- Success Message -->
+              <div
+                x-show="success"
+                x-transition
+                class="p-4 bg-green-50 border-2 border-green-200 rounded-lg"
+              >
+                <div class="flex items-center gap-3">
+                  <svg
+                    class="w-6 h-6 text-green-600 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <p class="text-green-800 font-medium">
+                    Thank you! We've received your request and will contact you soon.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Error Message -->
+              <div
+                x-show="error"
+                x-transition
+                class="p-4 bg-red-50 border-2 border-red-200 rounded-lg"
+              >
+                <div class="flex items-center gap-3">
+                  <svg
+                    class="w-6 h-6 text-red-600 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                      clip-rule="evenodd"></path>
+                  </svg>
+                  <p class="text-red-800 font-medium" x-text="error"></p>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>
