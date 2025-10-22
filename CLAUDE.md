@@ -96,7 +96,7 @@ This template promotes a Contact Form Management WordPress plugin with these key
 ### SEO and Meta Configuration
 - **BaseHead.astro** contains comprehensive SEO setup with OpenGraph and Twitter cards
 - **Placeholder URLs** (`https://yoursite.com`, `https://www.yourwebsite.com/`) need updating for production
-- **FormFlow branding** already integrated throughout meta tags and content
+- **FluxyForm branding** already integrated throughout meta tags and content
 
 ### Page Architecture
 - **File-based routing** - Each `.astro` file in `src/pages/` becomes a route
@@ -118,7 +118,7 @@ This project integrates with Sanity CMS for content management:
 - **CDN**: Disabled (`useCdn: false`) for real-time content updates
 - **Integration**: Configured in `astro.config.mjs` via `@sanity/astro`
 
-The Sanity integration allows fetching blog posts and other content. The studio is maintained in a separate project (`studio-formflow`) in the parent monorepo.
+The Sanity integration allows fetching blog posts and other content. The studio is maintained in a separate project (`studio-FluxyForm`) in the parent monorepo.
 
 ## Form Audit Feature
 
@@ -129,7 +129,7 @@ The `/audit` page (`src/pages/audit.astro`) provides a live form analysis tool:
 - **Interactive Components**: Uses Alpine.js for client-side state management
 - **Analysis Features**: Form detection, security checks (HTTPS, CSRF), performance metrics, scoring (0-100)
 
-The audit API is maintained in a separate project (`formflow-audit-api`) in the parent monorepo.
+The audit API is maintained in a separate project (`FluxyForm-audit-api`) in the parent monorepo.
 
 ## Deployment
 

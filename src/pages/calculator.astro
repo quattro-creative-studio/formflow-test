@@ -3,26 +3,35 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout>
-  <section class="overflow-hidden bg-gradient-to-br from-red-50 via-white to-accent-50">
+  <section
+    class="overflow-hidden bg-gradient-to-br from-red-50 via-white to-accent-50"
+  >
     <div class="px-8 pt-32 pb-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
       <!-- Header -->
       <div class="max-w-2xl mx-auto text-center mb-12">
         <div class="flex items-center justify-center gap-2 mb-4">
-          <span class="inline-flex items-center gap-2 bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold animate-pulse">
+          <span
+            class="inline-flex items-center gap-2 bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold animate-pulse"
+          >
             💰 Reality Check
           </span>
         </div>
-        <h1 class="text-2xl/snug leading-tight tracking-tight sm:text-3xl/snug md:text-4xl/snug lg:text-5xl/snug mt-4 font-bold text-base-900">
-          How Much is Poor Form Management <span class="text-red-600">Costing You</span>?
+        <h1
+          class="text-2xl/snug leading-tight tracking-tight sm:text-3xl/snug md:text-4xl/snug lg:text-5xl/snug mt-4 font-bold text-base-900"
+        >
+          How Much is Poor Form Management <span class="text-red-600"
+            >Costing You</span
+          >?
         </h1>
         <p class="text-lg leading-relaxed mt-6 text-base-600 font-medium">
-          Most WordPress site owners lose <strong>$7,000+ per year</strong> in wasted time. Calculate your real cost below.
+          Most WordPress site owners lose <strong>$7,000+ per year</strong> in wasted
+          time. Calculate your real cost below.
         </p>
       </div>
 
       <!-- Calculator Card -->
       <div class="max-w-4xl mx-auto">
-        <div 
+        <div
           x-data="{
             forms: 50,
             timePerForm: 10,
@@ -87,23 +96,25 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <div class="grid md:grid-cols-2 gap-8 mb-12">
             <!-- Left Column -->
             <div class="space-y-6">
-              <h2 class="text-2xl font-bold text-base-900 mb-6">Tell us about your site:</h2>
-              
+              <h2 class="text-2xl font-bold text-base-900 mb-6">
+                Tell us about your site:
+              </h2>
+
               <!-- Forms per month -->
               <div>
                 <label class="block text-sm font-semibold text-base-700 mb-3">
                   How many contact form submissions do you get per month?
                 </label>
                 <div class="relative">
-                  <input 
+                  <input
                     x-model.number="forms"
                     @input="calculateCosts()"
-                    type="range" 
-                    min="5" 
-                    max="500" 
+                    type="range"
+                    min="5"
+                    max="500"
                     step="5"
                     class="w-full h-3 bg-base-200 rounded-lg appearance-none cursor-pointer slider"
-                  >
+                  />
                   <div class="flex justify-between text-sm text-base-500 mt-2">
                     <span>5</span>
                     <span>250</span>
@@ -111,7 +122,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                   </div>
                 </div>
                 <div class="mt-2 text-center">
-                  <span class="inline-flex items-center px-4 py-2 bg-accent-100 text-accent-800 rounded-full font-bold text-lg" x-text="forms + ' forms/month'"></span>
+                  <span
+                    class="inline-flex items-center px-4 py-2 bg-accent-100 text-accent-800 rounded-full font-bold text-lg"
+                    x-text="forms + ' forms/month'"></span>
                 </div>
               </div>
 
@@ -121,28 +134,28 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                   Average time to process each form submission?
                 </label>
                 <div class="grid grid-cols-2 gap-3">
-                  <button 
+                  <button
                     @click="setTimePerForm(5)"
                     :class="timePerForm === 5 ? 'bg-accent-500 text-white' : 'bg-base-100 text-base-700 hover:bg-base-200'"
                     class="p-3 rounded-lg border border-base-200 font-medium transition-all duration-200"
                   >
                     5 minutes
                   </button>
-                  <button 
+                  <button
                     @click="setTimePerForm(10)"
                     :class="timePerForm === 10 ? 'bg-accent-500 text-white' : 'bg-base-100 text-base-700 hover:bg-base-200'"
                     class="p-3 rounded-lg border border-base-200 font-medium transition-all duration-200"
                   >
                     10 minutes
                   </button>
-                  <button 
+                  <button
                     @click="setTimePerForm(15)"
                     :class="timePerForm === 15 ? 'bg-accent-500 text-white' : 'bg-base-100 text-base-700 hover:bg-base-200'"
                     class="p-3 rounded-lg border border-base-200 font-medium transition-all duration-200"
                   >
                     15 minutes
                   </button>
-                  <button 
+                  <button
                     @click="setTimePerForm(25)"
                     :class="timePerForm === 25 ? 'bg-accent-500 text-white' : 'bg-base-100 text-base-700 hover:bg-base-200'"
                     class="p-3 rounded-lg border border-base-200 font-medium transition-all duration-200"
@@ -158,17 +171,20 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                   What's your time worth per hour?
                 </label>
                 <div class="relative">
-                  <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-base-500 font-medium">$</span>
-                  <input 
+                  <span
+                    class="absolute left-3 top-1/2 transform -translate-y-1/2 text-base-500 font-medium"
+                    >$</span
+                  >
+                  <input
                     x-model.number="hourlyRate"
                     @input="calculateCosts()"
-                    type="number" 
-                    min="15" 
-                    max="200" 
+                    type="number"
+                    min="15"
+                    max="200"
                     step="5"
                     class="w-full pl-8 pr-4 py-3 border border-base-300 rounded-lg font-medium text-lg focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
                     placeholder="50"
-                  >
+                  />
                 </div>
                 <p class="mt-2 text-xs text-base-500">
                   Think: freelance rate, salary equivalent, or opportunity cost
@@ -178,33 +194,57 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
             <!-- Right Column - Live Preview -->
             <div class="bg-base-50 rounded-2xl p-6">
-              <h3 class="text-lg font-bold text-base-900 mb-4">Your Current Situation:</h3>
-              
+              <h3 class="text-lg font-bold text-base-900 mb-4">
+                Your Current Situation:
+              </h3>
+
               <div class="space-y-4">
-                <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+                <div
+                  class="flex justify-between items-center p-3 bg-white rounded-lg"
+                >
                   <span class="text-base-700">Monthly submissions:</span>
                   <span class="font-bold text-base-900" x-text="forms"></span>
                 </div>
-                
-                <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+
+                <div
+                  class="flex justify-between items-center p-3 bg-white rounded-lg"
+                >
                   <span class="text-base-700">Time per submission:</span>
-                  <span class="font-bold text-base-900" x-text="timePerForm + ' min'"></span>
+                  <span
+                    class="font-bold text-base-900"
+                    x-text="timePerForm + ' min'"></span>
                 </div>
-                
-                <div class="flex justify-between items-center p-3 bg-white rounded-lg">
+
+                <div
+                  class="flex justify-between items-center p-3 bg-white rounded-lg"
+                >
                   <span class="text-base-700">Your hourly rate:</span>
-                  <span class="font-bold text-base-900" x-text="'$' + hourlyRate"></span>
+                  <span
+                    class="font-bold text-base-900"
+                    x-text="'$' + hourlyRate"></span>
                 </div>
 
                 <div class="border-t border-base-200 pt-4">
-                  <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg border-l-4 border-red-500">
-                    <span class="font-semibold text-red-700">Monthly time waste:</span>
-                    <span class="font-bold text-red-600" x-text="Math.round((forms * timePerForm) / 60) + ' hours'"></span>
+                  <div
+                    class="flex justify-between items-center p-3 bg-red-50 rounded-lg border-l-4 border-red-500"
+                  >
+                    <span class="font-semibold text-red-700"
+                      >Monthly time waste:</span
+                    >
+                    <span
+                      class="font-bold text-red-600"
+                      x-text="Math.round((forms * timePerForm) / 60) + ' hours'"
+                    ></span>
                   </div>
-                  
-                  <div class="flex justify-between items-center p-3 bg-red-100 rounded-lg border-l-4 border-red-600 mt-2">
-                    <span class="font-semibold text-red-800">Monthly cost:</span>
-                    <span class="font-bold text-red-700 text-lg" x-text="'$' + formatNumber(monthlyWaste)"></span>
+
+                  <div
+                    class="flex justify-between items-center p-3 bg-red-100 rounded-lg border-l-4 border-red-600 mt-2"
+                  >
+                    <span class="font-semibold text-red-800">Monthly cost:</span
+                    >
+                    <span
+                      class="font-bold text-red-700 text-lg"
+                      x-text="'$' + formatNumber(monthlyWaste)"></span>
                   </div>
                 </div>
               </div>
@@ -212,129 +252,224 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </div>
 
           <!-- Results Section -->
-          <div x-show="calculated" x-transition.duration.500ms class="border-t border-base-200 pt-12">
-            
+          <div
+            x-show="calculated"
+            x-transition.duration.500ms
+            class="border-t border-base-200 pt-12"
+          >
             <!-- Shocking Results -->
             <div class="text-center mb-12">
-              <div class="inline-flex items-center gap-2 bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              <div
+                class="inline-flex items-center gap-2 bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-semibold mb-6"
+              >
                 😱 Your Reality Check Results
               </div>
-              
+
               <div class="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
                 <!-- Monthly Cost -->
-                <div class="bg-red-50 rounded-2xl p-6 border-l-4 border-red-500">
-                  <div class="text-2xl font-bold text-red-600" x-text="'$' + formatNumber(monthlyWaste)"></div>
+                <div
+                  class="bg-red-50 rounded-2xl p-6 border-l-4 border-red-500"
+                >
+                  <div
+                    class="text-2xl font-bold text-red-600"
+                    x-text="'$' + formatNumber(monthlyWaste)"
+                  >
+                  </div>
                   <div class="text-red-700 font-medium">wasted monthly</div>
-                  <div class="text-sm text-red-600 mt-2" x-text="Math.round((forms * timePerForm) / 60) + ' hours lost'"></div>
+                  <div
+                    class="text-sm text-red-600 mt-2"
+                    x-text="Math.round((forms * timePerForm) / 60) + ' hours lost'"
+                  >
+                  </div>
                 </div>
 
                 <!-- Yearly Cost -->
-                <div class="bg-red-100 rounded-2xl p-6 border-l-4 border-red-600">
-                  <div class="text-3xl font-bold text-red-700" x-text="'$' + formatNumber(yearlyWaste)"></div>
+                <div
+                  class="bg-red-100 rounded-2xl p-6 border-l-4 border-red-600"
+                >
+                  <div
+                    class="text-3xl font-bold text-red-700"
+                    x-text="'$' + formatNumber(yearlyWaste)"
+                  >
+                  </div>
                   <div class="text-red-800 font-medium">wasted yearly</div>
-                  <div class="text-sm text-red-700 mt-2" x-text="Math.round((forms * timePerForm * 12) / 60) + ' hours annually!'"></div>
+                  <div
+                    class="text-sm text-red-700 mt-2"
+                    x-text="Math.round((forms * timePerForm * 12) / 60) + ' hours annually!'"
+                  >
+                  </div>
                 </div>
 
                 <!-- 5-Year Impact -->
-                <div class="bg-red-200 rounded-2xl p-6 border-l-4 border-red-700">
-                  <div class="text-2xl font-bold text-red-800" x-text="'$' + formatNumber(yearlyWaste * 5)"></div>
+                <div
+                  class="bg-red-200 rounded-2xl p-6 border-l-4 border-red-700"
+                >
+                  <div
+                    class="text-2xl font-bold text-red-800"
+                    x-text="'$' + formatNumber(yearlyWaste * 5)"
+                  >
+                  </div>
                   <div class="text-red-900 font-medium">5-year impact</div>
-                  <div class="text-sm text-red-800 mt-2">That's a car payment!</div>
+                  <div class="text-sm text-red-800 mt-2">
+                    That's a car payment!
+                  </div>
                 </div>
               </div>
 
-              <!-- Comparison with FormFlow -->
-              <div class="mt-12 p-8 bg-green-50 rounded-2xl border border-green-200">
-                <h3 class="text-2xl font-bold text-base-900 mb-6">With FormFlow Automation:</h3>
-                
+              <!-- Comparison with FluxyForm -->
+              <div
+                class="mt-12 p-8 bg-green-50 rounded-2xl border border-green-200"
+              >
+                <h3 class="text-2xl font-bold text-base-900 mb-6">
+                  With FluxyForm Automation:
+                </h3>
+
                 <div class="grid md:grid-cols-2 gap-8">
                   <!-- Before -->
                   <div class="text-center">
-                    <div class="text-red-600 font-bold text-lg mb-2">Current Approach</div>
-                    <div class="text-4xl font-bold text-red-600 mb-2" x-text="'$' + formatNumber(yearlyWaste)"></div>
+                    <div class="text-red-600 font-bold text-lg mb-2">
+                      Current Approach
+                    </div>
+                    <div
+                      class="text-4xl font-bold text-red-600 mb-2"
+                      x-text="'$' + formatNumber(yearlyWaste)"
+                    >
+                    </div>
                     <div class="text-red-700">per year wasted</div>
-                    <div class="text-sm text-red-600 mt-2" x-text="Math.round((forms * timePerForm * 12) / 60) + ' hours of your life'"></div>
+                    <div
+                      class="text-sm text-red-600 mt-2"
+                      x-text="Math.round((forms * timePerForm * 12) / 60) + ' hours of your life'"
+                    >
+                    </div>
                   </div>
 
                   <!-- After -->
                   <div class="text-center">
-                    <div class="text-green-600 font-bold text-lg mb-2">FormFlow Magic</div>
-                    <div class="text-4xl font-bold text-green-600 mb-2">$348</div>
-                    <div class="text-green-700">FormFlow annual cost</div>
-                    <div class="text-sm text-green-600 mt-2">24 hours/year (2h/month)</div>
+                    <div class="text-green-600 font-bold text-lg mb-2">
+                      FluxyForm Magic
+                    </div>
+                    <div class="text-4xl font-bold text-green-600 mb-2">
+                      $348
+                    </div>
+                    <div class="text-green-700">FluxyForm annual cost</div>
+                    <div class="text-sm text-green-600 mt-2">
+                      24 hours/year (2h/month)
+                    </div>
                   </div>
                 </div>
 
                 <!-- Savings -->
-                <div class="mt-8 p-6 bg-green-100 rounded-xl border-2 border-green-300">
+                <div
+                  class="mt-8 p-6 bg-green-100 rounded-xl border-2 border-green-300"
+                >
                   <div class="text-center">
-                    <div class="text-green-800 font-semibold text-lg mb-2">Your Annual Savings with FormFlow:</div>
-                    <div class="text-5xl font-bold text-green-700 mb-2" x-text="'$' + formatNumber(yearlyWaste - 348)"></div>
-                    <div class="text-green-800 font-medium" x-text="'Save ' + Math.round(((yearlyWaste - 348) / yearlyWaste) * 100) + '% of your time costs'"></div>
-                    <div class="text-sm text-green-700 mt-2" x-text="'Plus ' + (Math.round((forms * timePerForm * 12) / 60) - 24) + ' hours back in your life!'"></div>
+                    <div class="text-green-800 font-semibold text-lg mb-2">
+                      Your Annual Savings with FluxyForm:
+                    </div>
+                    <div
+                      class="text-5xl font-bold text-green-700 mb-2"
+                      x-text="'$' + formatNumber(yearlyWaste - 348)"
+                    >
+                    </div>
+                    <div
+                      class="text-green-800 font-medium"
+                      x-text="'Save ' + Math.round(((yearlyWaste - 348) / yearlyWaste) * 100) + '% of your time costs'"
+                    >
+                    </div>
+                    <div
+                      class="text-sm text-green-700 mt-2"
+                      x-text="'Plus ' + (Math.round((forms * timePerForm * 12) / 60) - 24) + ' hours back in your life!'"
+                    >
+                    </div>
                   </div>
                 </div>
 
                 <!-- ROI Calculation -->
-                <div class="mt-6 p-4 bg-accent-50 rounded-lg border border-accent-200">
+                <div
+                  class="mt-6 p-4 bg-accent-50 rounded-lg border border-accent-200"
+                >
                   <div class="text-center">
                     <span class="text-accent-800 font-semibold">ROI:</span>
-                    <span class="text-2xl font-bold text-accent-600 ml-2" x-text="Math.round(((yearlyWaste - 348) / 348) * 100) + 'x return'"></span>
-                    <div class="text-sm text-accent-700 mt-1">For every $1 spent on FormFlow, save $<span x-text="Math.round((yearlyWaste - 348) / 348)"></span></div>
+                    <span
+                      class="text-2xl font-bold text-accent-600 ml-2"
+                      x-text="Math.round(((yearlyWaste - 348) / 348) * 100) + 'x return'"
+                    ></span>
+                    <div class="text-sm text-accent-700 mt-1">
+                      For every $1 spent on FluxyForm, save $<span
+                        x-text="Math.round((yearlyWaste - 348) / 348)"></span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
             <!-- Lead Capture -->
-            <div class="bg-gradient-to-br from-accent-50 to-blue-50 rounded-2xl p-8 border border-accent-200">
+            <div
+              class="bg-gradient-to-br from-accent-50 to-blue-50 rounded-2xl p-8 border border-accent-200"
+            >
               <div class="max-w-2xl mx-auto text-center">
                 <h3 class="text-2xl font-bold text-base-900 mb-4">
-                  Ready to Save <span class="text-green-600" x-text="'$' + formatNumber(yearlyWaste - 348)"></span> This Year?
+                  Ready to Save <span
+                    class="text-green-600"
+                    x-text="'$' + formatNumber(yearlyWaste - 348)"></span> This Year?
                 </h3>
                 <p class="text-base-600 mb-6">
-                  Get your personalized report + exclusive WordPress form management templates (Worth $197)
+                  Get your personalized report + exclusive WordPress form
+                  management templates (Worth $197)
                 </p>
 
                 <!-- Email Capture Form -->
                 <form @submit.prevent="submitEmail()" class="space-y-4">
                   <div class="grid md:grid-cols-2 gap-4">
-                    <input 
+                    <input
                       x-model="email"
-                      type="email" 
+                      type="email"
                       required
                       placeholder="Enter your email address"
                       class="w-full px-4 py-3 border border-base-300 rounded-lg font-medium focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
-                    >
-                    <input 
+                    />
+                    <input
                       x-model="name"
-                      type="text" 
+                      type="text"
                       required
                       placeholder="Your first name"
                       class="w-full px-4 py-3 border border-base-300 rounded-lg font-medium focus:ring-2 focus:ring-accent-500 focus:border-accent-500"
-                    >
+                    />
                   </div>
-                  
-                  <button 
+
+                  <button
                     type="submit"
                     :disabled="submitting || !email || !name"
                     :class="submitting || !email || !name ? 'bg-accent-400 cursor-not-allowed' : 'bg-accent-600 hover:bg-accent-700'"
                     class="w-full text-white font-bold py-4 px-8 rounded-lg text-lg transition-colors duration-200 flex items-center justify-center gap-2"
                   >
-                    <svg x-show="!submitting" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M3 8l7.89 7.89a1 1 0 001.42 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    <svg
+                      x-show="!submitting"
+                      class="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M3 8l7.89 7.89a1 1 0 001.42 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      ></path>
                     </svg>
-                    <div x-show="submitting" class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span x-text="submitting ? 'Sending Report...' : 'Get My FREE Report + Templates ($197 Value)'"></span>
+                    <div
+                      x-show="submitting"
+                      class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
+                    >
+                    </div>
+                    <span
+                      x-text="submitting ? 'Sending Report...' : 'Get My FREE Report + Templates ($197 Value)'"
+                    ></span>
                   </button>
                 </form>
 
                 <p class="text-xs text-base-500 mt-4">
-                  No spam. Unsubscribe anytime. Used by 500+ WordPress professionals.
+                  No spam. Unsubscribe anytime. Used by 500+ WordPress
+                  professionals.
                 </p>
               </div>
             </div>
-
           </div>
         </div>
       </div>
@@ -346,24 +481,33 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             Stop Wasting Time. Start Saving Money.
           </h3>
           <p class="text-base-600 mb-6">
-            Join hundreds of WordPress professionals who've already automated their form management with FormFlow.
+            Join hundreds of WordPress professionals who've already automated
+            their form management with FluxyForm.
           </p>
-          <a 
+          <a
             href="https://wordpress.org/plugins/"
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 px-8 py-4 bg-accent-600 hover:bg-accent-700 text-white font-bold rounded-lg text-lg transition-colors"
           >
-            Start Your Free Trial Today
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            Get in Touch Today
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
             </svg>
           </a>
         </div>
       </div>
     </div>
   </section>
-
 
   <!-- Custom Slider Styling -->
   <style>
@@ -375,7 +519,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       background: #0b8aff;
       cursor: pointer;
       box-shadow: 0 0 2px 0 #555;
-      transition: background .15s ease-in-out;
+      transition: background 0.15s ease-in-out;
     }
 
     .slider::-webkit-slider-thumb:hover {

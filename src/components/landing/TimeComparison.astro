@@ -1,25 +1,25 @@
 ---
-// TimeComparison.astro - Section comparaison temps DIY vs FormFlow
+// TimeComparison.astro - Section comparaison temps DIY vs FluxyForm
 import { ChevronDown } from "@lucide/astro";
 ---
 
-<section class="overflow-hidden bg-base-25">
+<section class="overflow-hidden bg-primary-800">
   <div class="px-8 py-24 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <!-- Header -->
     <div class="max-w-2xl mx-auto text-center mb-16">
       <div class="flex items-center justify-center gap-2 mb-4">
         <span
-          class="inline-flex items-center gap-2 bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold"
+          class="inline-flex items-center gap-2 bg-white text-red-800 px-3 py-1 rounded-full text-sm font-semibold"
         >
           ⏰ Time Reality Check
         </span>
       </div>
       <h2
-        class="text-xl/snug leading-tight tracking-tight sm:text-2xl/snug md:text-3xl/snug lg:text-4xl/snug mt-4 font-semibold text-base-900"
+        class="text-xl/snug leading-tight tracking-tight sm:text-2xl/snug md:text-3xl/snug lg:text-4xl/snug mt-4 font-semibold text-warning-50"
       >
         How Much Time Are You Really Wasting on Contact Forms?
       </h2>
-      <p class="text-base leading-normal mt-4 text-base-500 font-medium">
+      <p class="text-base leading-normal mt-4 text-warning-50/70 font-medium">
         Most WordPress site owners spend 15+ hours per month on manual form
         management. Here's the brutal breakdown:
       </p>
@@ -30,7 +30,7 @@ import { ChevronDown } from "@lucide/astro";
       <div class="grid lg:grid-cols-2 gap-8">
         <!-- DIY Approach - Time Wasters -->
         <div class="relative" x-data="{ open: false }">
-          <div class="bg-white ring-1 ring-red-200 rounded-2xl p-8">
+          <div class="bg-primary-600 rounded-2xl p-8">
             <div class="flex items-center gap-3 mb-6">
               <div
                 class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center"
@@ -46,7 +46,7 @@ import { ChevronDown } from "@lucide/astro";
                 </svg>
               </div>
               <div>
-                <h3 class="text-xl font-semibold text-base-900">
+                <h3 class="text-xl font-semibold text-warning-50">
                   The DIY Nightmare
                 </h3>
                 <p class="text-sm text-red-600 font-medium">
@@ -56,7 +56,7 @@ import { ChevronDown } from "@lucide/astro";
             </div>
 
             <!-- Total Waste (Always Visible) -->
-            <div class="p-4 bg-red-100 rounded-lg border-2 border-red-300 mb-4">
+            <div class="p-4 bg-red-100 rounded-lg mb-4">
               <div class="flex items-center justify-between">
                 <span class="font-semibold text-base-900"
                   >Total Time Wasted:</span
@@ -258,9 +258,9 @@ import { ChevronDown } from "@lucide/astro";
           </div>
         </div>
 
-        <!-- FormFlow Approach -->
+        <!-- FluxyForm Approach -->
         <div class="relative" x-data="{ open: false }">
-          <div class="bg-white ring-1 ring-green-200 rounded-2xl p-8">
+          <div class="bg-primary-600 rounded-2xl p-8">
             <div class="flex items-center gap-3 mb-6">
               <div
                 class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center"
@@ -276,7 +276,7 @@ import { ChevronDown } from "@lucide/astro";
               </div>
               <div>
                 <h3 class="text-xl font-semibold text-base-900">
-                  The FormFlow Way
+                  The FluxyForm Way
                 </h3>
                 <p class="text-sm text-green-600 font-medium">
                   2 hours/month maximum
@@ -285,9 +285,7 @@ import { ChevronDown } from "@lucide/astro";
             </div>
 
             <!-- Total Time Saved (Always Visible) -->
-            <div
-              class="p-4 bg-green-100 rounded-lg border-2 border-green-300 mb-4"
-            >
+            <div class="p-4 bg-green-100 rounded-lg mb-4">
               <div class="flex items-center justify-between">
                 <span class="font-semibold text-base-900"
                   >Total Time Investment:</span
@@ -530,14 +528,14 @@ import { ChevronDown } from "@lucide/astro";
         <p class="text-base-600 mb-6">
           Join hundreds of WordPress site owners who've already reclaimed <strong
             >13+ hours every month</strong
-          > with FormFlow's intelligent automation.
+          > with FluxyForm's intelligent automation.
         </p>
         <div class="flex flex-wrap items-center gap-4 justify-center">
           <a
             href="https://wordpress.org/plugins/"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 px-6 py-3 bg-accent-600 hover:bg-accent-700 text-white font-medium rounded-lg transition-colors"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-warning-600 hover:bg-warning-400 text-white font-medium rounded-lg transition-colors"
           >
             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
               <path

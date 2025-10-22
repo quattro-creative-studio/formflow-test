@@ -10,20 +10,20 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 const post = await sanityClient.fetch<SanityDocument>(POST_QUERY, Astro.params);
 
 export async function getStaticPaths(): Promise<{ params: { slug: string } }> {
-    const SLUGS_QUERY = `*[_type == "post" && defined(slug.current)]{
+  const SLUGS_QUERY = `*[_type == "post" && defined(slug.current)]{
     "params": {"slug": slug.current}
   }`;
-    return await sanityClient.fetch(SLUGS_QUERY, Astro.params);
+  return await sanityClient.fetch(SLUGS_QUERY, Astro.params);
 }
 
 const { projectId, dataset } = sanityClient.config();
 const urlFor = (source: SanityImageSource) =>
-    projectId && dataset
-        ? imageUrlBuilder({ projectId, dataset }).image(source)
-        : null;
-const postImageUrl = post.image
-    ? urlFor(post.image)?.width(550).height(310).url()
+  projectId && dataset
+    ? imageUrlBuilder({ projectId, dataset }).image(source)
     : null;
+const postImageUrl = post.image
+  ? urlFor(post.image)?.width(550).height(310).url()
+  : null;
 ---
 
 <BaseLayout>
@@ -31,18 +31,29 @@ const postImageUrl = post.image
     <div class="px-8 pt-32 pb-24 mx-auto md:px-12 lg:px-24 max-w-4xl">
       <!-- Navigation & Meta -->
       <div class="flex items-center justify-between mb-8">
-        <a 
-          href="/posts" 
+        <a
+          href="/posts"
           class="inline-flex items-center gap-2 text-base-500 hover:text-accent-500 transition-colors font-medium"
         >
-          <svg class="w-4 h-4 transition-transform hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          <svg
+            class="w-4 h-4 transition-transform hover:-translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"></path>
           </svg>
           Back to Blog
         </a>
         <div class="flex items-center gap-2">
-          <span class="inline-flex items-center gap-2 bg-accent-100 text-accent-800 px-3 py-1 rounded-full text-sm font-semibold">
-            📝 FormFlow Blog
+          <span
+            class="inline-flex items-center gap-2 bg-accent-100 text-accent-800 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            📝 FluxyForm Blog
           </span>
         </div>
       </div>
@@ -50,14 +61,18 @@ const postImageUrl = post.image
       <!-- Article Header -->
       <header class="max-w-3xl mx-auto text-center mb-12">
         <time class="text-sm text-base-400 font-medium mb-4 block">
-          {new Date(post.publishedAt).toLocaleDateString('en-US', { 
-            weekday: 'long',
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric' 
-          })}
+          {
+            new Date(post.publishedAt).toLocaleDateString("en-US", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }
         </time>
-        <h1 class="text-2xl/snug leading-tight tracking-tight sm:text-3xl/snug md:text-4xl/snug lg:text-5xl/snug font-semibold text-base-900 mb-6">
+        <h1
+          class="text-2xl/snug leading-tight tracking-tight sm:text-3xl/snug md:text-4xl/snug lg:text-5xl/snug font-semibold text-base-900 mb-6"
+        >
           {post.title}
         </h1>
       </header>
@@ -79,7 +94,8 @@ const postImageUrl = post.image
 
       <!-- Article Content -->
       <div class="max-w-3xl mx-auto">
-        <div class="prose prose-lg prose-base max-w-none
+        <div
+          class="prose prose-lg prose-base max-w-none
                     prose-headings:text-base-900 prose-headings:font-semibold
                     prose-h1:text-3xl prose-h1:mb-8 prose-h1:mt-12
                     prose-h2:text-2xl prose-h2:mb-6 prose-h2:mt-10
@@ -90,7 +106,8 @@ const postImageUrl = post.image
                     prose-ul:my-6 prose-ol:my-6
                     prose-li:text-base-700 prose-li:my-2
                     prose-blockquote:border-l-4 prose-blockquote:border-accent-200 prose-blockquote:pl-6 prose-blockquote:italic prose-blockquote:text-base-600
-                    prose-code:bg-base-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-accent-700">
+                    prose-code:bg-base-100 prose-code:px-2 prose-code:py-1 prose-code:rounded prose-code:text-accent-700"
+        >
           {Array.isArray(post.body) && <PortableText value={post.body} />}
         </div>
       </div>
@@ -101,20 +118,31 @@ const postImageUrl = post.image
           <div class="flex items-center gap-3">
             <div class="w-2 h-2 bg-accent-500 rounded-full"></div>
             <span class="text-sm text-base-500">
-              Published on {new Date(post.publishedAt).toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
-              })}
+              Published on {
+                new Date(post.publishedAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              }
             </span>
           </div>
-          <a 
-            href="/" 
+          <a
+            href="/"
             class="inline-flex items-center gap-2 text-sm text-accent-600 hover:text-accent-700 font-medium transition-colors"
           >
-            Learn more about FormFlow
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            Learn more about FluxyForm
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path>
             </svg>
           </a>
         </div>

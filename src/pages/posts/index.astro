@@ -17,67 +17,98 @@ const posts = await sanityClient.fetch<SanityDocument[]>(POSTS_QUERY);
       <!-- Header Section -->
       <div class="max-w-2xl mx-auto text-center mb-16">
         <div class="flex items-center justify-center gap-2 mb-4">
-          <span class="inline-flex items-center gap-2 bg-accent-100 text-accent-800 px-3 py-1 rounded-full text-sm font-semibold">
-            📝 FormFlow Blog
+          <span
+            class="inline-flex items-center gap-2 bg-accent-100 text-accent-800 px-3 py-1 rounded-full text-sm font-semibold"
+          >
+            📝 FluxyForm Blog
           </span>
         </div>
-        <h1 class="text-xl/snug leading-tight tracking-tight sm:text-2xl/snug md:text-3xl/snug lg:text-4xl/snug mt-4 font-semibold text-base-900">
+        <h1
+          class="text-xl/snug leading-tight tracking-tight sm:text-2xl/snug md:text-3xl/snug lg:text-4xl/snug mt-4 font-semibold text-base-900"
+        >
           Latest Insights & Updates
         </h1>
         <p class="text-base leading-normal mt-4 text-base-500 font-medium">
-          Discover the latest trends in WordPress form management, AI-powered solutions, and professional contact handling.
+          Discover the latest trends in WordPress form management, AI-powered
+          solutions, and professional contact handling.
         </p>
       </div>
 
       <!-- Posts Grid -->
       <div class="max-w-5xl mx-auto">
-        {posts.length === 0 ? (
-          <div class="text-center py-12">
-            <p class="text-base-500">No posts available yet. Check back soon!</p>
-          </div>
-        ) : (
-          <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
-              <article class="group">
-                <a href={`/posts/${post.slug.current}`} class="block">
-                  <div class="bg-white ring-1 ring-base-200 rounded-2xl p-6 transition-all duration-200 hover:ring-accent-200 hover:shadow-lg">
-                    <div class="flex items-center justify-between mb-3">
-                      <time class="text-sm text-base-400 font-medium">
-                        {new Date(post.publishedAt).toLocaleDateString('en-US', { 
-                          year: 'numeric', 
-                          month: 'short', 
-                          day: 'numeric' 
-                        })}
-                      </time>
-                      <div class="w-2 h-2 bg-accent-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        {
+          posts.length === 0 ? (
+            <div class="text-center py-12">
+              <p class="text-base-500">
+                No posts available yet. Check back soon!
+              </p>
+            </div>
+          ) : (
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => (
+                <article class="group">
+                  <a href={`/posts/${post.slug.current}`} class="block">
+                    <div class="bg-white ring-1 ring-base-200 rounded-2xl p-6 transition-all duration-200 hover:ring-accent-200 hover:shadow-lg">
+                      <div class="flex items-center justify-between mb-3">
+                        <time class="text-sm text-base-400 font-medium">
+                          {new Date(post.publishedAt).toLocaleDateString(
+                            "en-US",
+                            {
+                              year: "numeric",
+                              month: "short",
+                              day: "numeric",
+                            },
+                          )}
+                        </time>
+                        <div class="w-2 h-2 bg-accent-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                      <h2 class="text-lg font-semibold text-base-900 mb-3 group-hover:text-accent-600 transition-colors line-clamp-2">
+                        {post.title}
+                      </h2>
+                      <div class="flex items-center text-sm text-accent-600 font-medium">
+                        Read more
+                        <svg
+                          class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </div>
                     </div>
-                    <h2 class="text-lg font-semibold text-base-900 mb-3 group-hover:text-accent-600 transition-colors line-clamp-2">
-                      {post.title}
-                    </h2>
-                    <div class="flex items-center text-sm text-accent-600 font-medium">
-                      Read more 
-                      <svg class="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                      </svg>
-                    </div>
-                  </div>
-                </a>
-              </article>
-            ))}
-          </div>
-        )}
+                  </a>
+                </article>
+              ))}
+            </div>
+          )
+        }
       </div>
 
       <!-- Navigation Link -->
       <div class="max-w-2xl mx-auto text-center mt-16">
-        <a 
+        <a
           href="/"
           class="inline-flex items-center gap-2 text-base-500 hover:text-accent-500 transition-colors font-medium"
         >
-          <svg class="w-4 h-4 transition-transform hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+          <svg
+            class="w-4 h-4 transition-transform hover:-translate-x-1"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"></path>
           </svg>
-          Back to FormFlow Home
+          Back to FluxyForm Home
         </a>
       </div>
     </div>
