@@ -7,16 +7,19 @@ const featuresList = [
     title: "Spam Destruction",
     description:
       "Cut through the clutter: zero false positives, only the emails that actually matter.",
+    icon: "/Spam-destruction-icon-1.png",
   },
   {
     title: "AI-Organized Inbox",
     description:
       "See your real leads first: automatically tagged, prioritized, and highlighted by sentiment and urgency.",
+    icon: "/ai-organizd-inbox-icon.png",
   },
   {
     title: "Advanced Filtering",
     description:
       "Find what matters instantly: filter by source, priority, sentiment, or site, and focus on what drives results.",
+    icon: "advanced-filtering-icon.png",
   },
 ];
 ---
@@ -221,12 +224,17 @@ const featuresList = [
     </div>
   </div>
   <dl
-    class="lg:gap-x-8 lg:grid-cols-3 max-w-4xl mt-8 mx-auto sm:gap-x-6 sm:gap-y-12 sm:grid sm:grid-cols-2 sm:space-y-0 space-y-6 text-center text-sm items-start"
+    class="lg:gap-x-8 lg:grid-cols-3 max-w-4xl mt-8 mx-auto sm:gap-x-6 sm:gap-y-12 sm:grid sm:grid-cols-2 sm:space-y-0 space-y-6 text-sm items-start"
   >
     {
-      featuresList.map(({ title, description }) => (
-        <div class="text-base-500 lg:text-balance">
-          <strong class="text-warning-50">{title}</strong> ━ {description}
+      featuresList.map(({ title, description, icon }) => (
+        <div class="flex items-center gap-4">
+          <div class="w-16 h-16 sm:w-[76px] sm:h-[76px] flex-shrink-0 flex items-center justify-center">
+            <img src={icon} alt={title} class="w-full h-full object-contain" />
+          </div>
+          <div class="text-warning-50/70 lg:text-balance text-left">
+            <strong class="text-warning-50">{title}</strong> ━ {description}
+          </div>
         </div>
       ))
     }
