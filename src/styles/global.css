@@ -6,32 +6,86 @@
   --font-sans: "Inter", sans-serif;
   --font-display: "InterVariable", sans-serif;
   --color-black: #121212;
-  /* Accent  */
---color-accent-25: #f5fbff;
---color-accent-50: #ebf7ff;
---color-accent-100: #d2edff;
---color-accent-200: #afdfff;
---color-accent-300: #78ceff;
---color-accent-400: #38b1ff;
---color-accent-500: #0b8aff;
---color-accent-600: #0065ff;
---color-accent-700: #004cff;
---color-accent-800: #003dd4;
---color-accent-900: #02379e;
---color-accent-950: #072364;
-/* Base */
---color-base-25: #fafafa;
---color-base-50: #f9fafb;
---color-base-100: #f3f4f6;
---color-base-200: #e5e7eb;
---color-base-300: #d1d5db;
---color-base-400: #9ca3af;
---color-base-500: #6b7280;
---color-base-600: #4b5563;
---color-base-700: #374151;
---color-base-800: #1f2937;
---color-base-900: #111827;
---color-base-950: #030712;
+
+  /* Accent (Blue) */
+  --color-accent-25: #f5fbff;
+  --color-accent-50: #ebf7ff;
+  --color-accent-100: #d2edff;
+  --color-accent-200: #afdfff;
+  --color-accent-300: #78ceff;
+  --color-accent-400: #38b1ff;
+  --color-accent-500: #0b8aff;
+  --color-accent-600: #0065ff;
+  --color-accent-700: #004cff;
+  --color-accent-800: #003dd4;
+  --color-accent-900: #02379e;
+  --color-accent-950: #072364;
+
+  /* Base (Grays) */
+  --color-base-25: #fafafa;
+  --color-base-50: #f9fafb;
+  --color-base-100: #f3f4f6;
+  --color-base-200: #e5e7eb;
+  --color-base-300: #d1d5db;
+  --color-base-400: #9ca3af;
+  --color-base-500: #6b7280;
+  --color-base-600: #4b5563;
+  --color-base-700: #374151;
+  --color-base-800: #1f2937;
+  --color-base-900: #111827;
+  --color-base-950: #030712;
+
+  /* Primary (Navy Blue) */
+  --color-primary-50: #f0f1f9;
+  --color-primary-100: #e1e3f3;
+  --color-primary-200: #c3c7e7;
+  --color-primary-300: #a5abdb;
+  --color-primary-400: #6875c3;
+  --color-primary-500: #4a5aa7;
+  --color-primary-600: #262e5b;
+  --color-primary-700: #1f264a;
+  --color-primary-800: #111838;
+  --color-primary-900: #0d1229;
+  --color-primary-950: #090c1a;
+
+  /* Warning (Orange/Yellow) */
+  --color-warning-50: #fffbdd;
+  --color-warning-100: #fff7c2;
+  --color-warning-200: #fef3a7;
+  --color-warning-300: #feef8c;
+  --color-warning-400: #fee456;
+  --color-warning-500: #fdc940;
+  --color-warning-600: #fdb014;
+  --color-warning-700: #e09a0f;
+  --color-warning-800: #b37b0c;
+  --color-warning-900: #865c09;
+  --color-warning-950: #593d06;
+
+  /* Danger (Coral/Red) */
+  --color-danger-50: #fff1f1;
+  --color-danger-100: #ffe1e2;
+  --color-danger-200: #ffc3c5;
+  --color-danger-300: #ffa5a8;
+  --color-danger-400: #ff868b;
+  --color-danger-500: #ff6467;
+  --color-danger-600: #e5434f;
+  --color-danger-700: #cc3239;
+  --color-danger-800: #992126;
+  --color-danger-900: #661618;
+  --color-danger-950: #330b0c;
+
+  /* Success (Teal/Green) */
+  --color-success-50: #e6f7f4;
+  --color-success-100: #ccefe9;
+  --color-success-200: #99dfd3;
+  --color-success-300: #66cfbd;
+  --color-success-400: #33bfa7;
+  --color-success-500: #00957f;
+  --color-success-600: #007f6b;
+  --color-success-700: #006957;
+  --color-success-800: #005343;
+  --color-success-900: #003d2f;
+  --color-success-950: #00271b;
 }
 /* CSS */
 :root {
