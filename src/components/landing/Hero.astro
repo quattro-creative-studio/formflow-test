@@ -21,7 +21,7 @@ const featuresList = [
 ];
 ---
 
-<section class="overflow-hidden bg-[#111838]">
+<section class="overflow-hidden bg-primary-800">
   <div class="px-8 pt-32 mx-auto md:px-12 lg:px-24 max-w-7xl relative">
     <div class="max-w-2xl text-center mx-auto lg:text-balance mb-10">
       <div class="flex items-center justify-center gap-2 mb-4">
@@ -38,16 +38,16 @@ const featuresList = [
           WPForms Ready
         </span>
       </div>
-      <p class="text-sm leading-normal font-bold uppercase text-[#00957F]">
+      <p class="text-sm leading-normal font-bold uppercase text-success-500">
         Stop losing time and leads to inbox chaos
       </p>
       <h2
-        class="text-xl/snug leading-tight tracking-tight sm:text-2xl/snug md:text-3xl/snug lg:text-4xl/snug mt-4 font-semibold text-[#FFFBDD]"
+        class="text-xl/snug leading-tight tracking-tight sm:text-2xl/snug md:text-3xl/snug lg:text-4xl/snug mt-4 font-semibold text-warning-50"
       >
         Turn messy contact form emails into a clean, AI-organized inbox for
         WordPress
       </h2>
-      <p class="text-base leading-normal mt-4 text-[#FFFBDD] font-medium">
+      <p class="text-base leading-normal mt-4 text-warning-50 font-medium">
         FormFlow automatically captures every submission, kills spam,
         prioritizes real leads, and keeps multi-site clients neatly separated—no
         more inbox chaos.
@@ -60,13 +60,13 @@ const featuresList = [
           href="https://wordpress.org/plugins/"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center justify-center transition-all duration-200 focus:ring-2 focus:outline-none text-black hover:text-black bg-[#FDB014] hover:bg-[#FFD05E] focus:ring-accent-500/50 h-9 px-4 py-2 text-sm font-medium rounded-md"
+          class="flex items-center justify-center transition-all duration-200 focus:ring-2 focus:outline-none text-black hover:text-black bg-warning-600 hover:bg-warning-400 focus:ring-accent-500/50 h-9 px-4 py-2 text-sm font-medium rounded-md"
         >
           Start your Free Trial
         </a>
         <button
           @click="videoOpen = true"
-          class="flex items-center justify-center gap-2 transition-all duration-200 focus:ring-2 focus:outline-none text-white bg-[#111838] hover:text-[#111838] hover:bg-white ring-1 ring-white h-9 px-4 py-2 text-sm font-medium rounded-md"
+          class="flex items-center justify-center gap-2 transition-all duration-200 focus:ring-2 focus:outline-none text-white bg-primary-800 hover:text-primary-800 hover:bg-white ring-1 ring-white h-9 px-4 py-2 text-sm font-medium rounded-md"
         >
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z"></path>
@@ -226,7 +226,7 @@ const featuresList = [
     {
       featuresList.map(({ title, description }) => (
         <div class="text-base-500 lg:text-balance">
-          <strong class="text-[#FFFBDD]">{title}</strong> ━ {description}
+          <strong class="text-warning-50">{title}</strong> ━ {description}
         </div>
       ))
     }

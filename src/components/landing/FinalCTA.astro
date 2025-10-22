@@ -2,24 +2,24 @@
 // Final CTA with FAQ objections according to Nat's specifications
 ---
 
-<section class="py-16 bg-[#111838]">
+<section class="py-16 bg-primary-800">
   <div class="px-8 mx-auto md:px-12 lg:px-24 max-w-7xl">
     <!-- FAQ Redirect Section -->
     <div class="max-w-3xl mx-auto mb-16 text-center">
-      <p class="text-sm leading-normal font-bold uppercase text-[#00957F]">
+      <p class="text-sm leading-normal font-bold uppercase text-success-500">
         Still Questions
       </p>
-      <h2 class="text-3xl font-bold text-[#FFFBDD] lg:text-4xl mb-4 mt-4">
+      <h2 class="text-3xl font-bold text-warning-50 lg:text-4xl mb-4 mt-4">
         Still have questions?
       </h2>
-      <p class="text-lg text-[#FFFBDD]/70 mb-8">
+      <p class="text-lg text-warning-50/70 mb-8">
         Get answers to all your FormFlow questions in our comprehensive FAQ
         section.
       </p>
 
       <a
         href="/faq"
-        class="inline-flex items-center justify-center transition-all duration-200 focus:ring-2 focus:outline-none text-white bg-[#FDB014] hover:bg-[#FFD05E] focus:ring-[#FDB014]/50 h-9 px-4 py-2 text-sm font-medium rounded-md w-fit max-w-xs mx-auto"
+        class="inline-flex items-center justify-center transition-all duration-200 focus:ring-2 focus:outline-none text-white bg-warning-600 hover:bg-warning-400 focus:ring-warning-600/50 h-9 px-4 py-2 text-sm font-medium rounded-md w-fit max-w-xs mx-auto"
       >
         <svg
           class="w-5 h-5 mr-3"
@@ -52,10 +52,10 @@
 
     <!-- Final CTA Section -->
     <div
-      class="bg-gradient-to-br from-[#262E5B] to-[#111838] rounded-3xl p-12 text-center"
+      class="bg-gradient-to-br from-primary-600 to-primary-800 rounded-3xl p-12 text-center"
     >
       <div class="max-w-3xl mx-auto">
-        <h2 class="text-4xl font-bold text-[#FFFBDD] lg:text-5xl mb-6">
+        <h2 class="text-4xl font-bold text-warning-50 lg:text-5xl mb-6">
           Ready to get your time back?
         </h2>
         <!-- <p class="text-xl text-base-600 mb-8">
@@ -181,10 +181,10 @@
         <!-- Contact Form Section -->
         <div class="pt-12 border-t border-accent-300">
           <div class="max-w-2xl mx-auto">
-            <h3 class="text-2xl font-bold text-[#FFFBDD] mb-3 text-center">
+            <h3 class="text-2xl font-bold text-warning-50 mb-3 text-center">
               Get in Touch
             </h3>
-            <p class="text-base text-[#FFFBDD]/70 mb-8 text-center">
+            <p class="text-base text-warning-50/70 mb-8 text-center">
               Have questions or want to learn more? Fill out the form below and
               our team will get back to you within 24 hours.
             </p>
@@ -246,7 +246,7 @@
                 <div>
                   <label
                     for="firstName"
-                    class="block text-sm font-semibold text-[#FFFBDD]/70 mb-2 text-left"
+                    class="block text-sm font-semibold text-warning-50/70 mb-2 text-left"
                   >
                     First Name <span class="text-red-500">*</span>
                   </label>
@@ -262,7 +262,7 @@
                 <div>
                   <label
                     for="lastName"
-                    class="block text-sm font-semibold text-[#FFFBDD]/70 mb-2 text-left"
+                    class="block text-sm font-semibold text-warning-50/70 mb-2 text-left"
                   >
                     Last Name <span class="text-red-500">*</span>
                   </label>
@@ -281,7 +281,7 @@
               <div>
                 <label
                   for="email"
-                  class="block text-sm font-semibold text-[#FFFBDD]/70 mb-2 text-left"
+                  class="block text-sm font-semibold text-warning-50/70 mb-2 text-left"
                 >
                   Work Email <span class="text-red-500">*</span>
                 </label>
@@ -299,7 +299,7 @@
               <div>
                 <label
                   for="nbSites"
-                  class="block text-sm font-semibold text-[#FFFBDD]/70 mb-2 text-left"
+                  class="block text-sm font-semibold text-warning-50/70 mb-2 text-left"
                 >
                   Number of WordPress Sites <span class="text-red-500">*</span>
                 </label>
@@ -322,7 +322,7 @@
               <div>
                 <label
                   for="demandeType"
-                  class="block text-sm font-semibold text-[#FFFBDD]/70 mb-2 text-left"
+                  class="block text-sm font-semibold text-warning-50/70 mb-2 text-left"
                 >
                   Request Type <span class="text-red-500">*</span>
                 </label>
@@ -347,7 +347,7 @@
               <div>
                 <label
                   for="message"
-                  class="block text-sm font-semibold text-[#FFFBDD]/70 mb-2 text-left"
+                  class="block text-sm font-semibold text-warning-50/70 mb-2 text-left"
                 >
                   Message (optional)
                 </label>
@@ -364,7 +364,7 @@
                 <button
                   type="submit"
                   :disabled="loading"
-                  :class="loading ? 'bg-base-400 cursor-not-allowed' : 'bg-[#FDB014] hover:bg-[#FFD05E]'"
+                  :class="loading ? 'bg-base-400 cursor-not-allowed' : 'bg-warning-600 hover:bg-warning-400'"
                   class="w-full text-dark font-semibold px-6 py-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-3"
                 >
                   <span x-show="!loading">Send Request</span>
