@@ -63,13 +63,13 @@ const featuresList = [
           href="https://wordpress.org/plugins/"
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center justify-center transition-all duration-200 focus:ring-2 focus:outline-none text-black hover:text-black bg-warning-600 hover:bg-warning-400 focus:ring-accent-500/50 h-9 px-4 py-2 text-sm font-medium rounded-md"
+          class="flex items-center justify-center transition-all duration-200 focus:ring-2 focus:outline-none text-black hover:text-black bg-warning-600 hover:bg-warning-400 px-8 py-4 text-lg font-bold rounded-md"
         >
           Get in Touch
         </a>
         <button
           @click="videoOpen = true"
-          class="flex items-center justify-center gap-2 transition-all duration-200 focus:ring-2 focus:outline-none text-white bg-primary-800 hover:text-primary-800 hover:bg-white ring-1 ring-white h-9 px-4 py-2 text-sm font-medium rounded-md"
+          class="flex items-center justify-center gap-2 transition-all duration-200 focus:ring-2 focus:outline-none text-white bg-primary-800 hover:text-primary-800 hover:bg-white ring-1 ring-white px-8 py-4 text-lg font-bold rounded-md"
         >
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
             <path d="M8 5v14l11-7z"></path>
@@ -224,16 +224,17 @@ const featuresList = [
     </div>
   </div>
   <dl
-    class="lg:gap-x-8 lg:grid-cols-3 max-w-4xl mt-8 mx-auto sm:gap-x-6 sm:gap-y-12 sm:grid sm:grid-cols-2 sm:space-y-0 space-y-6 text-sm items-start"
+    class="lg:gap-x-8 lg:grid-cols-3 max-w-5xl mt-8 mb-14 mx-auto sm:gap-x-6 sm:gap-y-12 sm:grid sm:grid-cols-2 sm:space-y-0 space-y-14 text-sm items-start"
   >
     {
       featuresList.map(({ title, description, icon }) => (
-        <div class="flex items-center gap-4">
-          <div class="w-16 h-16 sm:w-[76px] sm:h-[76px] flex-shrink-0 flex items-center justify-center">
+        <div class="flex items-top gap-4">
+          <div class="w-16 h-16 sm:w-[76px] sm:h-[76px] flex-shrink-0 flex items-top justify-top">
             <img src={icon} alt={title} class="w-full h-full object-contain" />
           </div>
-          <div class="text-warning-50/70 lg:text-balance text-left">
-            <strong class="text-warning-50">{title}</strong> ━ {description}
+          <div class="lg:text-balance text-left">
+            <strong class="text-warning-50 text-lg">{title}</strong> <br />{" "}
+            <span class="text-warning-50/70 text-base">{description}</span>
           </div>
         </div>
       ))

@@ -3,8 +3,8 @@
 @plugin "@tailwindcss/forms";
 
 @theme {
-  --font-sans: "Inter", sans-serif;
-  --font-display: "InterVariable", sans-serif;
+  --font-sans: "Nunito", sans-serif;
+  --font-display: "Nunito", sans-serif;
   --color-black: #121212;
 
   /* Accent (Blue) */
@@ -89,11 +89,5 @@
 }
 /* CSS */
 :root {
-  font-family: Inter, sans-serif;
-}
-@supports (font-variation-settings: normal) {
-  /* Use variable font if supported */
-  :root {
-    font-family: InterVariable, sans-serif;
-  }
+  font-family: "Nunito", sans-serif;
 }
